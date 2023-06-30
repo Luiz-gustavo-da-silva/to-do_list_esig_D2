@@ -1,0 +1,287 @@
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+ul, li, p{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuAtivo{
+  display: none;
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+}
+
+nz-content {
+  margin: 0 30px;
+  min-height: 83vh;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+}
+
+.li_global{
+  display: flex;
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 1rem;
+  align-items: center;
+  font-weight: 500;
+}
+
+.li__ativo{
+  background: rgba(255, 255, 255, 0.08); 
+}
+.li_global span{
+  color: #fff;
+}
+
+.li_global img{
+  width: 20px;
+  height: auto;
+}
+
+.textCenter{
+  justify-content: center;
+}
+
+.sideBar{
+  background: #6261b4;
+}
+
+.container_logoMenu{
+  background: #5554aa; 
+  display: flex; 
+  align-items: center;
+  gap:1rem;
+  padding: 1.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+
+.icones_sideBar{
+  color: #fff;
+}
+
+.container_logo{
+  color: #fff;
+  width: 100%;
+  padding-left: 2.5rem;
+}
+
+.container_header{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+}
+
+.container_header div{
+  display: flex;
+  align-items: center;
+}
+
+.container_inicial{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container_grid-contagem{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "todo doing done";
+  gap: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2.6rem;
+}
+
+#todo{
+  grid-area: todo;
+ 
+}
+
+#doing{
+  grid-area: doing;
+ 
+}
+
+#done{
+  grid-area: done;
+
+}
+
+#avatar{
+  border-radius: 5px;
+}
+
+.celula__contagem{
+  padding: 1.5rem 1rem;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container__img-celula{
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content:center ;
+}
+
+#container__divtodo{
+  background: rgba(181, 228, 255, 0.30);
+}
+
+#container__divdoing{
+  background: rgba(184, 128, 239, 0.20);
+}
+
+#container__divdone{
+  background: rgba(181, 255, 224, 0.30);
+}
+
+.container__numeral{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.descricao__numeral{
+  font-weight: 600;
+}
+
+.num{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.buttom__add{
+  background-color: #5554aa;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content:center; 
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.texto_principal{
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+} 
+
+nz-content{
+  margin-top: 4rem;
+}
+
+.texto__descricao{
+  font-weight: bold;
+}
+
+#mensagem__atraso{
+  font-size: 0.8rem;
+  padding-left: 0.3rem;
+}
+
+.container__section-grafico{
+  border-radius: 8px;
+  background: #FFF;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.container__section-grafico div:first-child{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.container__section-grafico div:nth-child(2){
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+}
+
+app-line-chart{
+  width: 100%;
+  height: auto;
+}
+
+.input__form_filter{
+  border-radius: 10px;
+  border: 1px solid var(--black-10, #E8EEF0);
+  background: var(--white-100, #FFF);
+}
+
+.input__form_filter:focus{
+  border: 1px solid #5554aa !important;
+}
+
+input {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+
+
+
+@media (max-width: 1000px) {
+  .container_grid-contagem{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "todo" 
+      "doing"
+      "done";
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2.6rem;
+  }
+
+  .container_inicial{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+
