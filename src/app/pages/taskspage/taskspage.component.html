@@ -1,0 +1,491 @@
+<div
+  class="App"
+  [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
+>
+  <nz-layout>
+    <nz-sider
+      nzCollapsible
+      [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null"
+      class="sideBar"
+      nzWidth="250px"
+    >
+      <div
+        class="container_logoMenu"
+        [ngClass]="isCollapsed ? 'textCenter' : ''"
+      >
+        <span
+          class="trigger"
+          nz-icon
+          [ngClass]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed"
+          style="
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <ng-container *ngIf="isCollapsed; else menuFoldIcon">
+            <mat-icon class="icones_sideBar">menu</mat-icon>
+          </ng-container>
+          <ng-template #menuFoldIcon>
+            <mat-icon class="icones_sideBar">clear</mat-icon>
+          </ng-template>
+        </span>
+
+        <div [ngClass]="isCollapsed ? 'menuAtivo' : ''" class="container_logo">
+          <p>Esig<span style="font-weight: 500">GROUP</span></p>
+        </div>
+      </div>
+
+      <div style="padding: 0.5rem; margin-top: 3rem">
+        <ul>
+          <li
+            class="li_global li__ativo"
+            [ngClass]="isCollapsed ? 'textCenter' : ''"
+          >
+            <img src="../../../assets/table-layout.svg" alt="" />
+            <span [ngClass]="isCollapsed ? 'menuAtivo' : ''">Dashboard</span>
+          </li>
+          <li
+            class="li_global li__container"
+            [ngClass]="isCollapsed ? 'textCenter' : ''"
+          >
+            <img src="../../../assets/list-timeline.svg" alt="" />
+            <span [ngClass]="isCollapsed ? 'menuAtivo' : ''">Tarefas</span>
+          </li>
+        </ul>
+      </div>
+    </nz-sider>
+    <nz-layout>
+      <nz-header class="container_header">
+        <div>
+          <mat-icon>search</mat-icon>
+        </div>
+
+        <div>
+          <!-- <nz-avatar
+            [nzShape]="'square'"
+            [nzSize]="'large'"
+            [nzIcon]="'user'"
+            id="avatar"
+          ></nz-avatar> -->
+        </div>
+      </nz-header>
+      <nz-content>
+        <!-- <div class="inner-content">Bill is a cat.</div> -->
+        <div class="container_inicial">
+          <div>
+            <p class="texto_principal">Tarefas</p>
+            <p><a href="">Dashboard</a> > <a href="">Terefas</a></p>
+          </div>
+
+          <div>
+            <button class="buttom__add">
+              <img src="../../../assets/square-plus.svg" alt="icone nova tarefa">  Nova Tarefa
+            </button>
+          </div>
+        </div>
+
+        <div class="container__filter_tabela">
+          <div>
+            <form [formGroup]="taskFilterForm">
+              <div class="filter__container">
+                <div>
+                  <input
+                    type="number"
+                    formControlName="number"
+                    placeholder="Número"
+                    id="numberInput"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="Campo de pesquisa para um número"
+                    class="input__form_filter"
+                  />
+                </div>
+
+                <div>
+                  <select
+                    placeholder="x"
+                    id="situacaoInput"
+                    formControlName="situation"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="Campo de pesquisa para um situação (Em andamento ou concluído)"
+                    class="input__form_filter"
+                  >
+                    <option disabled selected value="">Status</option>
+                    <option value="true">Em andamento</option>
+                    <option value="false">Concluído</option>
+                  </select>
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    formControlName="titleOrDescription"
+                    id="titleOrDescription"
+                    placeholder="Descrição/título"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="Campo de pesquisa para título/descrição"
+                    class="input__form_filter"
+                  />
+                </div>
+
+                <div>
+                  <select
+                    placeholder="Responsável"
+                    formControlName="responsible"
+                    id="responsavel"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="select para atribuir um responsável"
+                    class="input__form_filter"
+                  >
+                    <option disabled selected value="">Responsável</option>
+                    <option value="Luiz">Luiz</option>
+                    <option value="Raí">Raí</option>
+                    <option value="Alisson">Alisson</option>
+                    <option value="Carlos">Carlos</option>
+                    <option value="Laura">Laura</option>
+                    <option value="Gabriel">Gabriel</option>
+                    <option value="Mariana">Mariana</option>
+                    <option value="Daniel">Daniel</option>
+                    <option value="Luiza">Luiza</option>
+                    <option value="Julia">julia</option>
+                  </select>
+                </div>
+
+                <!-- <div>
+                  <button
+                    (click)="cleanFilter()"
+                    class="dialog-actions__button_sair"
+                    aria-label="Botão para limpar o filtro"
+                    [ngClass]="{
+                      'button-contrast': themeService.isHighContrastMode
+                    }"
+                  >
+                    Limpar filtro
+                  </button>
+                </div>
+  
+                <div>
+                  <button
+                    (click)="researchFiltertask()"
+                    class="dialog-actions__button_add"
+                    aria-label="Botão para buscar tarefa"
+                    [ngClass]="{
+                      'button-contrast': themeService.isHighContrastMode
+                    }"
+                  >
+                    Buscar tarefa
+                  </button>
+                </div> -->
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <table
+              mat-table
+              [dataSource]="dataSource"
+              matSort
+              [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
+            >
+              <!-- <ng-container matColumnDef="id" class="rep_invisible">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Número
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  {{ row.id }} 
+                </td>
+              </ng-container>-->
+
+              <ng-container matColumnDef="title">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Tarefa
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  {{ row.title }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="priority" class="rep_invisible">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Prior.
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                 <span [ngClass]="{ 
+                'class-media': row.priority === 'Média',
+                 'class-grave': row.priority === 'Grave',
+                 'class-facil': row.priority === 'Fácil'}" 
+                 >
+                 {{ row.priority }}
+                </span> 
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="situation" class="rep_invisible">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Status.
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                  
+                >
+                <span class="tag__aberta" *ngIf="row.situation">Aberta</span>
+                <span class="tag__concluida" *ngIf="!row.situation">Concluída</span>
+
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="responsible">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Respons.
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  {{ row.responsible }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="deadline" class="rep_invisible">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Deadline
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  class="rep_invisible"
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  {{ row.deadline | date:'EEE d MMM' }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  [ngClass]="{
+                    'text-contrast border-contrast':
+                      themeService.isHighContrastMode
+                  }"
+                ></th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  [ngClass]="{
+                    'border-contrast': themeService.isHighContrastMode
+                  }"
+                >
+                  <ng-container class="ng__container-acoes">
+                    <button
+                      mat-icon-button
+                      class="button__delete"
+                      (click)="deleteTask(row.id)"
+                      aria-label="Botão para deletar uma tarefa"
+                    >
+                      <!-- <mat-icon
+                        [ngClass]="{
+                          'text-contrast': themeService.isHighContrastMode
+                        }"
+                        >delete</mat-icon
+                      > -->
+                      <img
+                        src="../../../assets/trash.svg"
+                        alt="botão para deletar"
+                      />
+                    </button>
+
+                    <button
+                      mat-icon-button
+                      (click)="showDetails(row)"
+                      class="showdetails"
+                      aria-label="Botão para detalhar uma tarefa"
+                    >
+                      <!-- <mat-icon
+                        [ngClass]="{
+                          'text-contrast': themeService.isHighContrastMode
+                        }"
+                        >remove_red_eye</mat-icon
+                      > -->
+                      <img
+                        src="../../../assets/eye.svg"
+                        alt="botão para detalhar"
+                      />
+                    </button>
+
+                    <button
+                      mat-icon-button
+                      class="button__edit"
+                      (click)="editTask(row)"
+                      aria-label="Botão para editar uma tarefa"
+                    >
+                      <!-- <mat-icon
+                        [ngClass]="{
+                          'text-contrast': themeService.isHighContrastMode
+                        }"
+                        >edit</mat-icon
+                      > -->
+                      <img
+                        src="../../../assets/blog-pencil.svg"
+                        alt="botão para deletar"
+                      />
+                    </button>
+                  </ng-container>
+
+                  <!-- <ng-template #completed id="conclude"
+                    ><p
+                      [ngClass]="{
+                        'tarefa-contrast': themeService.isHighContrastMode
+                      }"
+                    >
+                      Tarefa Concluída
+                    </p></ng-template
+                  > -->
+                </td>
+              </ng-container>
+              <!-- <ng-container matColumnDef="detalhes">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  [ngClass]="{
+                    'text-contrast, border-contrast ':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  Detalhes
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let row"
+                  [ngClass]="{
+                    'text-contrast, border-contrast ':
+                      themeService.isHighContrastMode
+                  }"
+                >
+                  <button
+                    (click)="showDetails(row)"
+                    class="showdetails"
+                    aria-label="Botão para detalhar uma tarefa"
+                  >
+                    <mat-icon
+                      [ngClass]="{
+                        'text-contrast': themeService.isHighContrastMode
+                      }"
+                      >remove_red_eye</mat-icon
+                    >
+                  </button>
+                </td>
+              </ng-container> -->
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
+        </div>
+      </nz-content>
+      <!-- <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer> -->
+    </nz-layout>
+  </nz-layout>
+</div>
+
