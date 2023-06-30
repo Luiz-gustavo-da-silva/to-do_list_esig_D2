@@ -1,0 +1,212 @@
+mat-form-field {
+  width: 100%;
+}
+
+.form__container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.form__full-width {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 1rem;
+}
+
+.dialog-actions__button_sair {
+  background: rgba(184, 128, 239, 0.20) !important;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content:center; 
+  gap: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+// .dialog-actions__button_add {
+//   background-color: #3577be;
+//   border-radius: 5px;
+//   color: #fff;
+//   width: 35%;
+// }
+
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast img {
+  filter: invert(100%) !important;
+}
+
+.button-contrast {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.button-contrast:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.text-contrast {
+  color: #fff !important;
+}
+
+.input-contrast {
+  border: solid 1px #fff;
+  color: #fff !important;
+  background-color: #000;
+}
+
+.inputexterno-contrast {
+  border: solid 1px #fff;
+}
+
+.inputexterno-contrast div {
+  border: solid 1px #fff;
+}
+
+input,
+textarea,
+select {
+  padding: 1rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+form {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form input,
+form select {
+  width: 100% !important;
+}
+
+form div div {
+  width: 100% !important;
+}
+
+.dialog-actions {
+  padding-bottom: 1rem;
+}
+
+.container__div-modal {
+  height: 680px;
+  width: auto;
+  border-radius: 15px !important;
+  padding: 1rem 4rem;
+}
+
+.container_titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container_titulo h1 {
+  color: #263238;
+  font-size: 24px;
+  font-family: Plus Jakarta Sans;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+#botao_fecharmodal {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.botao_fecharmodal img {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.btn_close {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.input__form_filter{
+  border-radius: 10px;
+  border: 1px solid var(--black-10, #E8EEF0);
+  background: var(--white-100, #FFF);
+
+}
+
+.input__form_filter:focus{
+  border: 1px solid #5554aa !important;
+}
+
+input:focus{
+  border: 1px solid  #5554aa !important;
+}
+
+.container_duplo{
+  display: flex;
+  gap: 1rem;
+}
+
+.container_duplo input, .container_duplo select {
+  width: 100%;
+}
+
+
+.nz-upload__background{
+  background-color: #263238;
+}
+
+.container__button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.buttom__add{
+  background-color: #5554aa;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content:center; 
+  gap: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.buttom__add img{
+  width: 17px;
+  height: auto;
+}
+
+
+@media (max-width: 1000px) {
+  .form__container {
+    flex-direction: column;
+  }
+}
