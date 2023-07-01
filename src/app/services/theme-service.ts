@@ -5,8 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class ThemeService {
   isHighContrastMode = false;
-
+  menu: boolean = false;
+  
   toggleHighContrastMode() {
     this.isHighContrastMode = !this.isHighContrastMode;
+  }
+
+  toggleMenu() {
+    this.menu = !this.menu;
   }
 }

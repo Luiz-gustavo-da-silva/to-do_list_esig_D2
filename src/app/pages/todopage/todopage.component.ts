@@ -22,7 +22,6 @@ export class TodopageComponent implements OnInit {
   numTasksConcluidas: number = 0;
   numTasksAtrasadas: number = 0; 
   dot: boolean = false;
-  menu: boolean = false;
 
 
   constructor(
@@ -64,8 +63,5 @@ export class TodopageComponent implements OnInit {
     });
   }
 
-  
-  toggleMenu() {
-    this.menu = !this.menu;
-  }
+
 }
