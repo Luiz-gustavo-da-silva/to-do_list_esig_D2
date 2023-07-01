@@ -30,7 +30,7 @@ export class TaskspageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   isCollapsed:boolean = false;
-  menu: boolean = false;
+
 
   constructor(
     private dialog: MatDialog,
@@ -180,7 +180,5 @@ export class TaskspageComponent implements OnInit {
     });
   }
 
-  toggleMenu() {
-    this.menu = !this.menu;
-  }
+ 
 }

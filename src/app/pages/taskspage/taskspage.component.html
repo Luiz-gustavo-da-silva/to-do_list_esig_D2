@@ -1,57 +1,10 @@
 <div class="container_grid">
-  <div id="sideBar" [ngClass]="menu ? 'menuDesaparecer' : ''">
-    <div class="container_logoMenu" [ngClass]="menu ? 'textCenter' : ''">
-      <button
-        (click)="toggleMenu()"
-        *ngIf="menu"
-        aria-label="fechar ou abrir o menu"
-      >
-        <mat-icon class="icones_sideBar">menu</mat-icon>
-      </button>
-      <button
-        (click)="toggleMenu()"
-        *ngIf="!menu"
-        aria-label="fechar ou abrir o menu"
-      >
-        <mat-icon class="icones_sideBar">menu</mat-icon>
-      </button>
-
-      <div [ngClass]="menu ? 'menuAtivo' : ''" class="container_logo">
-        <p>Esig<span style="font-weight: 500">GROUP</span></p>
-      </div>
-    </div>
-
-    <div class="container__ul">
-      <ul>
-        <li class="li_global" [ngClass]="menu ? 'textCenter' : ''">
-          <a routerLink="/todopage">
-            <img src="../../../assets/table-layout.svg" alt="" />
-            <span [ngClass]="menu ? 'menuAtivo' : ''">Dashboard</span>
-          </a>
-        </li>
-        <li class="li_global li__ativo" [ngClass]="menu ? 'textCenter' : ''">
-          <a routerLink="/taskspage">
-            <img src="../../../assets/list-timeline.svg" alt="" />
-            <span [ngClass]="menu ? 'menuAtivo' : ''">Tarefas</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div id="sideBar" [ngClass]="themeService.menu ? 'menuDesaparecer' : ''">
+    <app-sidebar></app-sidebar>
   </div>
 
-  <div id="header" class="container_header">
-    <div>
-      <mat-icon>search</mat-icon>
-    </div>
-
-    <div>
-      <nz-avatar
-        [nzShape]="'square'"
-        [nzSize]="'large'"
-        [nzIcon]="'user'"
-        id="avatar"
-      ></nz-avatar>
-    </div>
+  <div id="header">
+    <app-header></app-header>
   </div>
 
   <div id="content">

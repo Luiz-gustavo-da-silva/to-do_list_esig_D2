@@ -1,0 +1,38 @@
+<div class="container_logoMenu" [ngClass]="themeService.menu ? 'textCenter' : ''">
+    <button
+      (click)="actionMenu()"
+      *ngIf="themeService.menu"
+      aria-label="fechar ou abrir o menu"
+    >
+      <mat-icon class="icones_sideBar">menu</mat-icon>
+    </button>
+    <button
+      (click)="actionMenu()"
+      *ngIf="!themeService.menu"
+      aria-label="fechar ou abrir o menu"
+    >
+      <mat-icon class="icones_sideBar">menu</mat-icon>
+    </button>
+
+    <div [ngClass]="themeService.menu ? 'menuAtivo' : ''" class="container_logo">
+      <p>Esig<span style="font-weight: 500">GROUP</span></p>
+    </div>
+  </div>
+
+  <div class="container__ul">
+    <ul>
+      <li class="li_global" [routerLinkActive]="'li__ativo'" [ngClass]="themeService.menu ? 'textCenter' : ''">
+        <a routerLink="/todopage">
+          <img src="../../../assets/table-layout.svg" alt="" />
+          <span [ngClass]="themeService.menu ? 'menuAtivo' : ''">Dashboard</span>
+        </a>
+      </li>
+      <li class="li_global" [routerLinkActive]="'li__ativo'" [ngClass]="themeService.menu ? 'textCenter' : ''"
+      >
+        <a routerLink="/taskspage">
+          <img src="../../../assets/list-timeline.svg" alt="" />
+          <span [ngClass]="themeService.menu ? 'menuAtivo' : ''">Tarefas</span>
+        </a>
+      </li>
+    </ul>
+  </div>

@@ -37,6 +37,7 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { TaskspageComponent } from './pages/taskspage/taskspage.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { HeaderComponent } from './components/header/header.component';
 
 registerLocaleData(en);
 
@@ -49,7 +50,8 @@ registerLocaleData(en);
     LoginComponent,
     TodopageComponent,
     TaskspageComponent,
-    LineChartComponent
+    LineChartComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
