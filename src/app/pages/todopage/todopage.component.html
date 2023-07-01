@@ -1,166 +1,151 @@
-<div
-  class="App"
-  [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
->
-  <nz-layout>
-    <nz-sider
-      nzCollapsible
-      [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null"
-      class="sideBar"
-      nzWidth="250px"
-      [nzBreakpoint]="'md'"
-    >
-      <div
-        class="container_logoMenu"
-        [ngClass]="isCollapsed ? 'textCenter' : ''"
+<div class="container_grid">
+  <div id="sideBar" [ngClass]="menu ? 'menuDesaparecer' : ''">
+    <div class="container_logoMenu" [ngClass]="menu ? 'textCenter' : ''">
+      <button
+        (click)="toggleMenu()"
+        *ngIf="menu"
+        aria-label="fechar ou abrir o menu"
       >
-        <span
-          class="trigger"
-          nz-icon
-          [ngClass]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-          (click)="isCollapsed = !isCollapsed"
-          style="
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          "
+        <mat-icon class="icones_sideBar">menu</mat-icon>
+      </button>
+      <button
+        (click)="toggleMenu()"
+        *ngIf="!menu"
+        aria-label="fechar ou abrir o menu"
+      >
+        <mat-icon class="icones_sideBar">menu</mat-icon>
+      </button>
+
+      <div [ngClass]="menu ? 'menuAtivo' : ''" class="container_logo">
+        <p>Esig<span style="font-weight: 500">GROUP</span></p>
+      </div>
+    </div>
+
+    <div class="container__ul">
+      <ul>
+        <li class="li_global li__ativo" [ngClass]="menu ? 'textCenter' : ''">
+          <a routerLink="/todopage">
+          <img src="../../../assets/table-layout.svg" alt="" />
+          <span [ngClass]="menu ? 'menuAtivo' : ''">Dashboard</span>
+        </a>
+        </li>
+        <li
+          class="li_global"
+          [ngClass]="menu ? 'textCenter' : ''"
         >
-          <ng-container *ngIf="isCollapsed; else menuFoldIcon">
-            <mat-icon class="icones_sideBar">menu</mat-icon>
-          </ng-container>
-          <ng-template #menuFoldIcon>
-            <mat-icon class="icones_sideBar">clear</mat-icon>
-          </ng-template>
-        </span>
+        <a routerLink="/taskspage">
+          <img src="../../../assets/list-timeline.svg" alt="" />
+          <span [ngClass]="menu ? 'menuAtivo' : ''">Tarefas</span>
+        </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-        <div [ngClass]="isCollapsed ? 'menuAtivo' : ''" class="container_logo">
-          <p>Esig<span style="font-weight: 500">GROUP</span></p>
+  <div id="header" class="container_header">
+    <div>
+      <mat-icon>search</mat-icon>
+    </div>
+
+    <div>
+      <nz-avatar
+        [nzShape]="'square'"
+        [nzSize]="'large'"
+        [nzIcon]="'user'"
+        id="avatar"
+      ></nz-avatar>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="container_inicial">
+      <div>
+        <p class="texto_principal">Olá <span>Fábio</span>,</p>
+        <p>Bem-vindo ou seu gestor de tarefas!</p>
+      </div>
+
+      <div style="display: flex; gap: 1rem">
+        <button class="buttom__add">
+          <mat-icon style="color: #fff">add_box</mat-icon> Gerar PDF
+        </button>
+        <button class="buttom__add" (click)="openDialog()">
+          <mat-icon style="color: #fff">add_box</mat-icon> Nova Tarefa
+        </button>
+      </div>
+    </div>
+
+    <div class="container_grid-contagem">
+      <div id="todo" class="celula__contagem">
+        <div class="container__numeral">
+          <span class="num">{{
+            numTasksEmAndamento + numTasksConcluidas
+          }}</span>
+          <span class="descricao__numeral">To Do</span>
+        </div>
+
+        <div>
+          <div id="container__divtodo" class="container__img-celula">
+            <img src="../../../assets/loading.svg" alt="" />
+          </div>
         </div>
       </div>
 
-      <div style="padding: 0.5rem; margin-top: 3rem">
-        <ul>
-          <li
-            class="li_global li__ativo"
-            [ngClass]="isCollapsed ? 'textCenter' : ''"
-          >
-            <img src="../../../assets/table-layout.svg" alt="" />
-            <span [ngClass]="isCollapsed ? 'menuAtivo' : ''">Dashboard</span>
-          </li>
-          <li
-            class="li_global li__container"
-            [ngClass]="isCollapsed ? 'textCenter' : ''"
-          >
-            <img src="../../../assets/list-timeline.svg" alt="" />
-            <span [ngClass]="isCollapsed ? 'menuAtivo' : ''">Tarefas</span>
-          </li>
-        </ul>
+      <div id="doing" class="celula__contagem">
+        <div class="container__numeral">
+          <div>
+            <nz-badge [nzDot]="dot">
+              <span class="head-example num">{{
+                numTasksEmAndamento
+              }}</span></nz-badge
+            >
+            <span id="mensagem__atraso"
+              >{{ numTasksAtrasadas }} tarefa em atraso!</span
+            >
+          </div>
+
+          <span class="descricao__numeral">doing</span>
+        </div>
+
+        <div>
+          <div id="container__divdoing" class="container__img-celula">
+            <img src="../../../assets/square-terminal.svg" alt="" />
+          </div>
+        </div>
       </div>
-    </nz-sider>
-    <nz-layout>
-      <nz-header class="container_header">
-        <div>
-          <mat-icon>search</mat-icon>
+
+      <div id="done" class="celula__contagem">
+        <div class="container__numeral">
+          <span class="num">{{ numTasksConcluidas }}</span>
+          <span class="descricao__numeral">done</span>
         </div>
 
         <div>
-          <nz-avatar
-            [nzShape]="'square'"
-            [nzSize]="'large'"
-            [nzIcon]="'user'"
-            id="avatar"
-          ></nz-avatar>
-        </div>
-      </nz-header>
-      <nz-content>
-        <!-- <div class="inner-content">Bill is a cat.</div> -->
-        <div class="container_inicial">
-          <div>
-            <p class="texto_principal">Olá <span>Fábio</span>,</p>
-            <p>Bem-vindo ou seu gestor de tarefas!</p>
-          </div>
-
-          <div>
-            <button class="buttom__add">
-              <mat-icon style="color: #fff">add_box</mat-icon> Nova Tarefa
-            </button>
+          <div id="container__divdone" class="container__img-celula">
+            <img src="../../../assets/checkbox.svg" alt="" />
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="container_grid-contagem">
-          <div id="todo" class="celula__contagem">
-            <div class="container__numeral">
-              <span class="num">4</span>
-              <span class="descricao__numeral">To do</span>
-            </div>
+    <div>
+      <p class="texto__descricao"># Tarefas concluídas por dia</p>
+    </div>
 
-            <div>
-              <div id="container__divtodo" class="container__img-celula">
-                <img src="../../../assets/loading.svg" alt="" />
-              </div>
-            </div>
-          </div>
-
-          <div id="doing" class="celula__contagem">
-            <div class="container__numeral">
-              <div>
-                <!-- <span class="num" 
-                  >--><nz-badge [nzDot]="dot">
-                  <span class="head-example num">2</span> </nz-badge
-                ><!--</span
-                > -->
-                <span id="mensagem__atraso">1 tarefa em atraso!</span>
-              </div>
-
-              <span class="descricao__numeral">doing</span>
-            </div>
-
-            <div>
-              <div id="container__divdoing" class="container__img-celula">
-                <img src="../../../assets/square-terminal.svg" alt="" />
-              </div>
-            </div>
-          </div>
-
-          <div id="done" class="celula__contagem">
-            <div class="container__numeral">
-              <span class="num">64</span>
-              <span class="descricao__numeral">done</span>
-            </div>
-
-            <div>
-              <div id="container__divdone" class="container__img-celula">
-                <img src="../../../assets/checkbox.svg" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <p class="texto__descricao"># Tarefas concluídas por dia</p>
-        </div>
-
-        <div class="container__section-grafico">
-          <div>
-            <input
-              type="date"
-              formControlName="deadline"
-              id="deadline"
-              placeholder=""
-              [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
-              aria-label="Campo para data limite"
-              class="input__form_filter"
-            />
-          </div>
-          <div class="">
-            <app-line-chart></app-line-chart>
-          </div>
-        </div>
-      </nz-content>
-
-    </nz-layout>
-  </nz-layout>
+    <div class="container__section-grafico">
+      <div>
+        <input
+          type="date"
+          formControlName="deadline"
+          id="deadline"
+          placeholder=""
+          [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
+          aria-label="Campo para data limite"
+          class="input__form_filter"
+        />
+      </div>
+      <div class="container__grafico">
+        <app-line-chart></app-line-chart>
+      </div>
+    </div>
+  </div>
 </div>
-

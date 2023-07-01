@@ -16,7 +16,7 @@ import { ThemeService } from '../../services/theme-service';
 })
 export class TaskspageComponent implements OnInit {
   panelOpenState = false;
-  title = 'to-do_list_esig';
+  title = 'Tarefas';
   taskFilterForm!: FormGroup;
   displayedColumns: string[] = [
     'title',
@@ -29,21 +29,8 @@ export class TaskspageComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  isCollapsed = false;
-  
-  count = 5;
-  dot = true;
-
-  addCount(): void {
-    this.count++;
-  }
-
-  minCount(): void {
-    this.count--;
-    if (this.count < 0) {
-      this.count = 0;
-    }
-  }
+  isCollapsed:boolean = false;
+  menu: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -74,8 +61,6 @@ export class TaskspageComponent implements OnInit {
    */
   showDetails(row: Task) {
     this.dialog.open(DialogDetailsComponent, {
-      width: '60%',
-      maxWidth: '80vw',
       data: row,
     });
   }
@@ -86,8 +71,6 @@ export class TaskspageComponent implements OnInit {
   openDialog() {
     this.dialog
       .open(DialogComponent, {
-        width: '40%',
-        maxWidth: '80vw'
       })
       .afterClosed()
       .subscribe((val) => {
@@ -160,7 +143,6 @@ export class TaskspageComponent implements OnInit {
     // console.log(row);
     this.dialog
       .open(DialogComponent, {
-        width: '40%',
         data: row,
       })
       .afterClosed()
@@ -185,5 +167,9 @@ export class TaskspageComponent implements OnInit {
         alert('Erro ao concluir tarefa!');
       },
     });
+  }
+
+  toggleMenu() {
+    this.menu = !this.menu;
   }
 }

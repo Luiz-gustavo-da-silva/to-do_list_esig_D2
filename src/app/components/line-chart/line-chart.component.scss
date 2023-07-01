@@ -1,0 +1,12 @@
+.chart-container canvas{
+    width: 100% !important;
+    height: auto !important;
+} 
+
+
+@media (max-width: 1000px) {
+    .chart-container canvas{
+        width: 100% !important;
+        height: auto !important;
+    }       
+}

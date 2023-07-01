@@ -1,42 +1,58 @@
-<div style="border: solid 1px #FFF">
-<h1 mat-dialog-title [ngClass]="{'high-contrast': themeService.isHighContrastMode}">Tarefa: {{ showData.title }}</h1>
-<div mat-dialog-content [ngClass]="{'high-contrast': themeService.isHighContrastMode}">
-  <div [ngClass]="{'text-contrast': themeService.isHighContrastMode}">
-    <h2>Número:</h2>
-    <p>{{ showData.id }}</p>
-  </div>
+<div class="container__div-modal">
+  <h1
+    [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
+  >
+    Tarefa: {{ showData.title }}
+  </h1>
+  <div
+    
+    [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
+  >
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Número:</h2>
+      <p>{{ showData.id }}</p>
+    </div>
 
-  <div [ngClass]="{'text-contrast': themeService.isHighContrastMode}">
-    <h2>Responsável:</h2>
-    <p>{{ showData.responsible }}</p>
-  </div>
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Responsável:</h2>
+      <p>{{ showData.responsible }}</p>
+    </div>
 
-  <div [ngClass]="{'text-contrast': themeService.isHighContrastMode}">
-    <h2>Prioridade:</h2>
-    <p>{{ showData.priority }}</p>
-  </div>
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Prioridade:</h2>
+      <p>{{ showData.priority }}</p>
+    </div>
 
-  <div [ngClass]="{'text-contrast': themeService.isHighContrastMode}">
-    <h2>Deadline:</h2>
-    <p>{{ showData.deadline | date}}</p>
-  </div>
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Deadline:</h2>
+      <p>{{ showData.deadline | date }}</p>
+    </div>
 
-  <div [ngClass]="{'text-contrast': themeService.isHighContrastMode}">
-    <h2>Descrição:</h2>
-    <p>{{ showData.description }}</p>
-  </div>
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Descrição:</h2>
+      <p>{{ showData.description }}</p>
+    </div>
 
-  <div [ngClass]="{'text-contrast': themeService.isHighContrastMode}">
-    <h2>Situação:</h2>
-    <p>
-      <span *ngIf="showData.situation; else concluido">Em andamento</span>
-      <ng-template #concluido>Concluído</ng-template>
-    </p>
-  </div>
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Situação:</h2>
+      <p>
+        <span *ngIf="showData.situation; else concluido">Em andamento</span>
+        <ng-template #concluido>Concluído</ng-template>
+      </p>
+    </div>
 
-  <div class="container__button-sair" [ngClass]="{'high-contrast': themeService.isHighContrastMode}">
-    <button mat-raised-button (click)="closeModal()" class="button__sair" aria-label="Botão para sair do modal" [ngClass]="{'button-contrast': themeService.isHighContrastMode}">Sair</button>
+    <div
+      class="container__button-sair"
+      [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
+    >
+      <button
+        (click)="closeModal()"
+        class="dialog-actions__button_sair"
+        aria-label="Botão para sair do modal"
+        [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
+      >
+        Sair
+      </button>
+    </div>
   </div>
-  
-</div>
 </div>

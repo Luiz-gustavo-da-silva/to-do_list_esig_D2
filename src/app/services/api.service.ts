@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin, map, Observable } from 'rxjs';
 import { FilterCriteria, Task } from '../models/TaskModel';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +14,56 @@ export class ApiService {
    * @returns Um Observable que emite uma resposta contendo as tarefas.
    */
   getTask(): Observable<Task[]> {
-    return this.http.get<Task[]>('api/Tasks?situation=true');
+    return this.http.get<Task[]>('api/Tasks');
+  }
+
+  getContadores(): Observable<any> {
+    const numTasksEmAndamento = this.http.get<Task[]>(
+      'api/Tasks?situation=true'
+    );
+    const numTasksConcluidas = this.http.get<Task[]>(
+      'api/Tasks?situation=false'
+    );
+
+    return forkJoin([numTasksEmAndamento, numTasksConcluidas]).pipe(
+      map(([tasksEmAndamento, tasksConcluidas]) => {
+        const countEmAndamento = tasksEmAndamento.length;
+        const countConcluidas = tasksConcluidas.length;
+
+        const dataAtual = new Date();
+        const countAtrasadas = tasksEmAndamento.filter(
+          (task) => new Date(task.deadline) < dataAtual
+        ).length;
+
+        return {
+          numTasksEmAndamento: countEmAndamento,
+          numTasksConcluidas: countConcluidas,
+          numTasksAtrasadas: countAtrasadas,
+        };
+      })
+    );
+  }
+
+  getDadosGrafico(): Observable<{ dia: string, quantidade: number }[]> {
+    return this.http.get<Task[]>('api/Tasks?situation=false').pipe(
+      map((tasks: Task[]) => {
+        const tarefasPorDia: { [key: string]: number } = {};
+
+        tasks.forEach(task => {
+          const dataConclusao = new Date(task.conclusionData).toLocaleDateString();
+          if (tarefasPorDia[dataConclusao]) {
+            tarefasPorDia[dataConclusao]++;
+          } else {
+            tarefasPorDia[dataConclusao] = 1;
+          }
+        });
+
+        return Object.keys(tarefasPorDia).map(dia => ({
+          dia,
+          quantidade: tarefasPorDia[dia]
+        }));
+      })
+    );
   }
 
   /**
@@ -23,7 +71,7 @@ export class ApiService {
    * @param data Os dados da tarefa a ser criada.
    * @returns Um Observable que emite uma resposta contendo a tarefa criada.
    */
-  postTask(data: Task):Observable<Task> {
+  postTask(data: Task): Observable<Task> {
     return this.http.post<Task>('api/Tasks', data);
   }
 
@@ -32,7 +80,7 @@ export class ApiService {
    * @param id O ID da tarefa a ser excluída.
    * @returns Um Observable que emite uma resposta vazia.
    */
-  deleteTask(id: number):Observable<void> {
+  deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`api/Tasks/${id}`);
   }
 
@@ -42,7 +90,7 @@ export class ApiService {
    * @param id O ID da tarefa a ser atualizada.
    * @returns Um Observable que emite uma resposta contendo a tarefa atualizada.
    */
-  putTask(data: Task, id: number):Observable<Task> {
+  putTask(data: Task, id: number): Observable<Task> {
     return this.http.put<Task>(`api/Tasks/${id}`, data);
   }
 
@@ -57,9 +105,9 @@ export class ApiService {
     return this.http.put<Task>(`api/Tasks/${id}`, data);
   }
 
-  //Essa consulta está ineficiente, pois estou tratando os dados localmente. 
-  //Imagino que com uma grande quantidade de dados, essa abordagem se torne 
-  //completamente obsoleta. No entanto, optei por fazê-la dessa forma para 
+  //Essa consulta está ineficiente, pois estou tratando os dados localmente.
+  //Imagino que com uma grande quantidade de dados, essa abordagem se torne
+  //completamente obsoleta. No entanto, optei por fazê-la dessa forma para
   //permitir consultas em colunas diferentes usando o in-memory-web-api, que
   //não suporta consultas combinadas.
   /**
@@ -67,7 +115,7 @@ export class ApiService {
    * @param data Os critérios de filtro.
    * @returns Um Observable que emite uma resposta contendo as tarefas filtradas.
    */
-  filterTask(data: FilterCriteria):Observable<Task[]> {
+  filterTask(data: FilterCriteria): Observable<Task[]> {
     const { number, situation, titleOrDescription, responsible } = data;
     let queryString = `api/Tasks?`;
 
@@ -84,11 +132,15 @@ export class ApiService {
     }
 
     if (titleOrDescription) {
-      const tituloRequest = this.http.get<Task[]>(`${queryString}title=${titleOrDescription}`);
-      const descricaoRequest = this.http.get<Task[]>(`${queryString}description=${titleOrDescription}`);
-  
+      const tituloRequest = this.http.get<Task[]>(
+        `${queryString}title=${titleOrDescription}`
+      );
+      const descricaoRequest = this.http.get<Task[]>(
+        `${queryString}description=${titleOrDescription}`
+      );
+
       return forkJoin([tituloRequest, descricaoRequest]).pipe(
-        map(results => {
+        map((results) => {
           const [tituloResponse, descricaoResponse] = results;
           return [...tituloResponse, ...descricaoResponse];
         })
@@ -100,15 +152,14 @@ export class ApiService {
     return this.http.get<Task[]>(queryString);
   }
 
-  // Esse método foi crriado só parra simular uma login de um usuário 
+  // Esse método foi crriado só parra simular uma login de um usuário
   /**
    * Realiza o login do usuário.
    * @param data Os dados de login do usuário.
    * @returns Um Observable que emite uma resposta contendo os detalhes do usuário logado.
    */
-  loginUser(data: any): Observable<any>{
+  loginUser(data: any): Observable<any> {
     const { login, senha } = data;
     return this.http.get<any>(`api/Users?login=${login}&senha=${senha}`);
   }
 }
-

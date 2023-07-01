@@ -1,4 +1,4 @@
-<div style="border: solid 1px #fff" class="container__div-modal">
+<div class="container__div-modal">
   <div class="container_titulo">
     <h1 [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }">
       Criar tarefa
@@ -113,7 +113,6 @@
 
     <div class="container__button">
       <button
-   
         mat-dialog-close
         class="dialog-actions__button_sair"
         aria-label="Botão para sair do modal"
@@ -122,14 +121,13 @@
         Cancelar
     </button>
       <button
-    
         color="primary"
         (click)="addTask()"
         class="buttom__add"
         aria-label="Botão para adicionar uma tarrefa ou editar"
         [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
       >
-      <img src="../../../assets/square-plus.svg" alt="icone nova tarefa"> {{ actionBtn }}
+      <img src="../../../assets/square-plus.svg" alt="icone nova tarefa ou editar"> {{ actionBtn }}
       </button>
     </div>
   </div>

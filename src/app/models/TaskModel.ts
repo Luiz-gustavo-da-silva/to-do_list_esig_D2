@@ -7,6 +7,7 @@ export interface Task {
     priority: string;
     deadline: string;
     situation: boolean;
+    conclusionData : string;
   }
   
 export interface FilterCriteria {

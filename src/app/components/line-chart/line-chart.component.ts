@@ -1,60 +1,82 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent implements OnInit{
+export class LineChartComponent implements OnInit {
+
+  constructor(private api: ApiService) {}
+
+  public chart: any;
 
   ngOnInit(): void {
     this.createChart();
+    this.buscaDadosGrafico();
   }
-  
-  public chart: any;
 
-  createChart(){
-  
+  createChart() {
     this.chart = new Chart("MyChart", {
-      type: 'line', 
-      data: {// values on X-Axis
-        labels: ['05/10', '05/11', '05/12','05/13',
-								 '05/14', '05/15', '05/16','05/17', ], 
-	       datasets: [
+      type: 'line',
+      data: {
+        labels: [], // Vamos atualizar esses valores
+        datasets: [
           {
-            label: "Sales",
-            data: ['467','576', '572', '79', '92', '574', '573', '576'],
+            label: "Tarefas Concluídas",
+            data: [], // Vamos atualizar esses valores
             backgroundColor: '#4AD894',
-            borderColor: '#4AD894', // Define a cor da linha igual à cor dos pontos
-            fill: false // Desativa o preenchimento abaixo da linha
-          } 
+            borderColor: '#4AD894',
+            fill: false
+          }
         ]
       },
       options: {
-        aspectRatio:2.5,
+        aspectRatio: 2.5,
         plugins: {
           legend: {
-            display: false // Desativa a exibição da legenda
+            display: false
           }
         },
         scales: {
           x: {
             grid: {
-              display: false // Remove as linhas de grade verticais
-            }
+              display: false
+            },
           },
           y: {
+            
             grid: {
-              display: true // Mantém as linhas de grade horizontais
+              display: true
+            },
+            ticks: {
+              stepSize: 1, // Define o tamanho do intervalo entre os valores do eixo y
+              precision: 0 // Define a precisão dos valores exibidos (0 para valores inteiros)
             }
           }
         }
       }
-      
     });
   }
 
-  
+  buscaDadosGrafico() {
+    this.api.getDadosGrafico().subscribe({
+      next: (res) => {
+        const labels = res.map(data => data.dia);
+        const dataPoints = res.map(data => data.quantidade);
 
+        // Atualiza os valores dos labels e dataPoints
+        this.chart.data.labels = labels;
+        this.chart.data.datasets[0].data = dataPoints;
+
+        // Atualiza o gráfico
+        this.chart.update();
+      },
+      error: () => {
+        alert('Erro ao buscar os contadores da dashboard');
+      },
+    });
+  }
 }
