@@ -38,7 +38,7 @@ export class TaskspageComponent implements OnInit {
     private api: ApiService,
     public themeService: ThemeService
   ) {}
-
+  
 
 
   /**
@@ -52,7 +52,9 @@ export class TaskspageComponent implements OnInit {
       responsible: '',
     });
 
+    this.setupFormChangeListeners();
     this.getAllTask();
+   
   }
 
   /**
@@ -83,9 +85,18 @@ export class TaskspageComponent implements OnInit {
   /**
    * Limpa os filtros de pesquisa de tarefas e exibe todas as tarefas em andamento.
    */
-  cleanFilter() {
-    this.taskFilterForm.reset();
-    this.getAllTask();
+  // cleanFilter() {
+  //   this.taskFilterForm.reset();
+  //   this.taskFilterForm.get('situation')?.setValue('selected');
+  //   this.taskFilterForm.get('responsible')?.setValue('selected');
+  //   this.getAllTask();
+  // }
+
+
+  setupFormChangeListeners() {
+    this.taskFilterForm.valueChanges.subscribe(() => {
+      this.researchFiltertask();
+    });
   }
 
   /**

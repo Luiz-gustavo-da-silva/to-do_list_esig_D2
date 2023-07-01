@@ -1,22 +1,33 @@
-<div class="container__img">
-  <img src="../../../assets/logo_esig.png" alt="">
-</div>
-<div class="login__container centralize"> 
+<header>
+  <p>Esig<span style="font-weight: 500">GROUP</span></p>
+</header>
+
+<div class="login__container">
+  
   <form [formGroup]="loginForm" (submit)="submitLogin()">
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput placeholder="Email" />
-    </mat-form-field>
+    <input
+      type="email"
+      formControlName="email"
+      placeholder="Email"
+      aria-label="Campo para email"
+      class="input__form"
+    />
 
-    <mat-form-field appearance="outline">
-      <mat-label>Senha</mat-label>
-      <input formControlName="senha" matInput placeholder="Senha" type="password"/>
-    </mat-form-field>
+    <input
+      type="password"
+      formControlName="senha"
+      placeholder="Senha"
+      aria-label="Campo para senha"
+      class="input__form"
+    />
 
-    <button type="submit" class="button__submit" [disabled]="!loginForm.valid" aria-label="Botão para fazer login">Enviar</button>
+    <button
+      type="submit"
+      class="button__submit"
+      [disabled]="!loginForm.valid"
+      aria-label="Botão para fazer login"
+    >
+      Enviar
+    </button>
   </form>
-</div>
-
-<div class="container__footer">
-  <app-footer></app-footer>
 </div>

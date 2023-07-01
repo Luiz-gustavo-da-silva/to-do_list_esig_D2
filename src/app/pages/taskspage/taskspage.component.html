@@ -101,7 +101,7 @@
                 aria-label="Campo de pesquisa para um situação (Em andamento ou concluído)"
                 class="input__form_filter"
               >
-                <option disabled selected value="">Status</option>
+                <option selected value="">Todas Prioridades</option>
                 <option value="true">Em andamento</option>
                 <option value="false">Concluído</option>
               </select>
@@ -131,6 +131,7 @@
                 }"
                 aria-label="select para atribuir um responsável"
                 class="input__form_filter"
+               
               >
                 <option disabled selected value="">Responsável</option>
                 <option value="Luiz">Luiz</option>
@@ -146,6 +147,7 @@
               </select>
             </div>
           </div>
+         
         </form>
       </div>
 
@@ -334,6 +336,7 @@
                 class="button__edit"
                 (click)="completeTask(row)"
                 aria-label="Botão para concluir uma tarefa"
+                *ngIf="row.situation"
               >
                 <mat-icon>check_circle_outline</mat-icon>
               </button>

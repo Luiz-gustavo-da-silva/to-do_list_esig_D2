@@ -72,6 +72,7 @@ export class ApiService {
    * @returns Um Observable que emite uma resposta contendo a tarefa criada.
    */
   postTask(data: Task): Observable<Task> {
+    data.conclusionData = new Date().toLocaleDateString();
     return this.http.post<Task>('api/Tasks', data);
   }
 

@@ -21,7 +21,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TaskDataService } from './services/data/task-data.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { DialogDetailsComponent } from './components/dialog-details/dialog-details.component';
 import { LoginComponent } from './pages/login/login.component';
 import { TodopageComponent } from './pages/todopage/todopage.component';
@@ -46,7 +45,6 @@ registerLocaleData(en);
     AppComponent,
     DialogComponent,
     SidebarComponent,
-    FooterComponent,
     DialogDetailsComponent,
     LoginComponent,
     TodopageComponent,
