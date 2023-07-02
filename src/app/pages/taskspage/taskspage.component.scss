@@ -143,6 +143,11 @@ form div div,
   justify-content: center;
 }
 
+.container_inicial p a{
+  color: #000;
+  text-decoration: underline;
+}
+
 @media (max-width: 1000px) {
   .container_grid {
     display: grid;

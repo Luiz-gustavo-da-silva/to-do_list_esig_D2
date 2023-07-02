@@ -34,6 +34,12 @@
     </div>
 
     <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+      <h2>Data da conclusão:</h2>
+      <p>{{ showData.conclusionData | date }}</p>
+    </div>
+
+
+    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
       <h2>Situação:</h2>
       <p>
         <span *ngIf="showData.situation; else concluido">Em andamento</span>

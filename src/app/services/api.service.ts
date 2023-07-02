@@ -44,23 +44,39 @@ export class ApiService {
     );
   }
 
-  getDadosGrafico(): Observable<{ dia: string, quantidade: number }[]> {
+  getDadosGrafico(
+    range?: any
+  ): Observable<{ dia: string; quantidade: number }[]> {
+    // console.log(range.range);
+
+    const today = new Date(); // Data atual
+    const endDate = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - range.range
+    );
+
     return this.http.get<Task[]>('api/Tasks?situation=false').pipe(
       map((tasks: Task[]) => {
         const tarefasPorDia: { [key: string]: number } = {};
 
-        tasks.forEach(task => {
-          const dataConclusao = new Date(task.conclusionData).toLocaleDateString();
-          if (tarefasPorDia[dataConclusao]) {
-            tarefasPorDia[dataConclusao]++;
-          } else {
-            tarefasPorDia[dataConclusao] = 1;
+        tasks.forEach((task) => {
+          const dataConclusao = new Date(task.conclusionData);
+          // console.log(dataConclusao);
+          if (dataConclusao <= today && dataConclusao >= endDate) {
+            // Verifica se a data de conclusão está dentro do range especificado
+            const dia = dataConclusao.toLocaleDateString();
+            if (tarefasPorDia[dia]) {
+              tarefasPorDia[dia]++;
+            } else {
+              tarefasPorDia[dia] = 1;
+            }
           }
         });
 
-        return Object.keys(tarefasPorDia).map(dia => ({
+        return Object.keys(tarefasPorDia).map((dia) => ({
           dia,
-          quantidade: tarefasPorDia[dia]
+          quantidade: tarefasPorDia[dia],
         }));
       })
     );
@@ -72,7 +88,6 @@ export class ApiService {
    * @returns Um Observable que emite uma resposta contendo a tarefa criada.
    */
   postTask(data: Task): Observable<Task> {
-    data.conclusionData = new Date().toLocaleDateString();
     return this.http.post<Task>('api/Tasks', data);
   }
 
@@ -103,6 +118,7 @@ export class ApiService {
    */
   concludeTask(data: Task, id: number): Observable<Task> {
     data.situation = false;
+    data.conclusionData = new Date().toISOString().slice(0, 10);
     return this.http.put<Task>(`api/Tasks/${id}`, data);
   }
 

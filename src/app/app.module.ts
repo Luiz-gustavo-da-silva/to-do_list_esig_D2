@@ -35,7 +35,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { TaskspageComponent } from './pages/taskspage/taskspage.component';
-import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -76,8 +75,7 @@ registerLocaleData(en);
     NzLayoutModule,
     NzIconModule,
     NzAvatarModule,
-    NzBadgeModule,
-    NzUploadModule
+    NzBadgeModule,    
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

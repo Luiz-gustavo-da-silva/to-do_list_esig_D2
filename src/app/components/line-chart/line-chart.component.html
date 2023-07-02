@@ -1,3 +1,11 @@
+<form [formGroup]="formChart">
+  <select formControlName="range" class="input__form_filter">
+    <option value="5" selected>Últimos 5 dias</option>
+    <option value="15">Últimos 15 dias</option>
+    <option value="30">Últimos 30 dias</option>
+  </select>
+</form>
+
 <div class="chart-container">
-    <canvas  id="MyChart" >{{ chart }}</canvas>
+  <canvas id="MyChart">{{ chart }}</canvas>
 </div>

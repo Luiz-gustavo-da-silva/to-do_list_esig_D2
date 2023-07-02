@@ -1,12 +1,30 @@
-.chart-container canvas{
-    width: 100% !important;
-    height: auto !important;
-} 
+.chart-container canvas {
+  width: 100% !important;
+  height: auto !important;
+}
 
+.input__form_filter {
+  border-radius: 15px !important;
+  border: 1px solid var(--black-10, #e8eef0);
+  background: var(--white-100, #fff);
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.input__form_filter:focus {
+  border: 1px solid #5554aa !important;
+}
+
+form{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 
 @media (max-width: 1000px) {
-    .chart-container canvas{
-        width: 100% !important;
-        height: auto !important;
-    }       
+  .chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
 }

@@ -19,7 +19,8 @@
           <img
             src="../../../assets/square-plus.svg"
             alt="icone nova tarefa ou editar"
-          /> Nova Tarefa
+          />
+          Nova Tarefa
         </button>
       </div>
     </div>
@@ -82,17 +83,6 @@
     </div>
 
     <div class="container__section-grafico">
-      <div>
-        <input
-          type="date"
-          formControlName="deadline"
-          id="deadline"
-          placeholder=""
-          [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
-          aria-label="Campo para data limite"
-          class="input__form_filter"
-        />
-      </div>
       <div class="container__grafico">
         <app-line-chart></app-line-chart>
       </div>

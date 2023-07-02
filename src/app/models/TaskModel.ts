@@ -8,6 +8,7 @@ export interface Task {
     deadline: string;
     situation: boolean;
     conclusionData : string;
+    file: any;
   }
   
 export interface FilterCriteria {

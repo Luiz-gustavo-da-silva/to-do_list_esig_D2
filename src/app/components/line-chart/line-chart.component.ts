@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { ApiService } from '../../services/api.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -9,14 +10,22 @@ import { ApiService } from '../../services/api.service';
 })
 export class LineChartComponent implements OnInit {
 
-  constructor(private api: ApiService) {}
+
+  constructor( private formBuilder: FormBuilder, private api: ApiService) {}
 
   public chart: any;
+  formChart !: FormGroup;
+
 
   ngOnInit(): void {
+    this.formChart = this.formBuilder.group({
+      range: ['5'],
+    });
     this.createChart();
-    this.buscaDadosGrafico();
+    this.buscaDadosGrafico({range: '5'});
+    this.setupFormChangeListeners();
   }
+  
 
   createChart() {
     this.chart = new Chart("MyChart", {
@@ -61,9 +70,19 @@ export class LineChartComponent implements OnInit {
     });
   }
 
-  buscaDadosGrafico() {
-    this.api.getDadosGrafico().subscribe({
+
+ 
+  setupFormChangeListeners() {
+    this.formChart.valueChanges.subscribe(() => {
+      this.buscaDadosGrafico(this.formChart.value);
+    });
+  }
+
+  buscaDadosGrafico(range?: any) {
+    this.api.getDadosGrafico(range).subscribe({
       next: (res) => {
+
+        console.log(res);
         const labels = res.map(data => data.dia);
         const dataPoints = res.map(data => data.quantidade);
 
@@ -79,4 +98,5 @@ export class LineChartComponent implements OnInit {
       },
     });
   }
+
 }

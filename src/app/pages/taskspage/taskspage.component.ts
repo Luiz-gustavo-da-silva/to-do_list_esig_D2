@@ -17,7 +17,9 @@ import { ThemeService } from '../../services/theme-service';
 export class TaskspageComponent implements OnInit {
   panelOpenState = false;
   title = 'Tarefas';
+
   taskFilterForm!: FormGroup;
+  
   displayedColumns: string[] = [
     'title',
     'priority',

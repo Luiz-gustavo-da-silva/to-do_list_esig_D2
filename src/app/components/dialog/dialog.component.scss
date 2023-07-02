@@ -218,4 +218,8 @@ input:focus{
     width: auto;
   }
 
+  .container_duplo{
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
