@@ -26,7 +26,7 @@
 
 #content {
   grid-area: content;
-  background: #F5F5F5;
+  background: #f5f5f5;
   padding: 0rem 2rem;
   height: 100%;
 }
@@ -52,7 +52,7 @@
   cursor: pointer;
 }
 
-.buttom__add img{
+.buttom__add img {
   width: 20px;
   height: auto;
 }
@@ -74,7 +74,7 @@
   border: 1px solid #5554aa !important;
 }
 
-.container__filter_tabela{
+.container__filter_tabela {
   background-color: #fff;
   padding: 1rem;
   margin-top: 2rem;
@@ -96,57 +96,70 @@ form div div,
   width: 20%;
 }
 
-.filter__container{
+.filter__container {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
 
-.class-media{
-  background: #FFA16C;
+.class-media {
+  background: #ffa16c;
   padding: 0.5rem;
   border-radius: 5px;
   color: #fff;
 }
 
-.class-grave{
-  background: #FF1414;
+.class-alta {
+  background: #ff1414;
   padding: 0.5rem;
   border-radius: 5px;
   color: #fff;
 }
 
-.class-facil{
-  background: #14B9FF;
+.class-baixa {
+  background: #14b9ff;
   padding: 0.5rem;
   border-radius: 5px;
   color: #fff;
 }
 
-.tag__aberta{
-  background: #FFA16C;
+.tag__aberta {
+  background: #ffa16c;
   padding: 0.5rem;
   border-radius: 5px;
   color: #fff;
 }
 
-.tag__concluida{
-  background: #4AD894;
+.tag__concluida {
+  background: #4ad894;
   padding: 0.5rem;
   border-radius: 5px;
   color: #fff;
 }
 
-.ng__container-acoes{
+.ng__container-acoes {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.container_inicial p a{
+.container_inicial p a {
   color: #000;
   text-decoration: underline;
 }
+
+.titulo__tabela {
+  color: #797b7c;
+  font-weight: 800;
+}
+.container__table {
+  margin-top: 1rem;
+}
+
+.accordion__mobile {
+  display: none;
+}
+
 
 @media (max-width: 1000px) {
   .container_grid {
@@ -190,7 +203,7 @@ form div div,
     padding: 0rem 1rem;
   }
 
-  .filter__container{
+  .filter__container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,20 +211,37 @@ form div div,
     flex-direction: column;
   }
 
-  .filter__container input, .filter__container select, .filter__container div{
+  .filter__container input,
+  .filter__container select,
+  .filter__container div {
     width: 100% !important;
   }
 
-  .rep_invisible{
+  .rep_invisible {
     display: none;
   }
 
-  .teste, table{
+  .container__table {
     overflow-x: scroll;
+    width: auto;
+  }
+
+  .accordion__mobile {
+    display: flex;
+  }
+  .form__desk{
+    display: none;
+  }
+
+  .filter__container{
+    flex-direction: column;
+  }
+
+  mat-accordion{
+    width: 100%;
+  }
+
+  .rep_invisible{
+    display: none !important;
   }
 }
-
-
-
-
-

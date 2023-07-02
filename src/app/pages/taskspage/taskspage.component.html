@@ -26,7 +26,103 @@
     </div>
 
     <div class="container__filter_tabela">
-      <div>
+
+      <div class="accordion__mobile">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  Filtro
+              </mat-panel-title>
+              <mat-panel-description>
+                Toque para {{panelOpenState ? 'Fechar' : 'Abrir'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <form [formGroup]="taskFilterForm">
+              <div class="filter__container">
+                <div>
+                  <input
+                    type="number"
+                    formControlName="number"
+                    placeholder="Número"
+                    id="numberInput"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="Campo de pesquisa para um número"
+                    class="input__form_filter"
+                  />
+                </div>
+    
+                <div>
+                  <select
+                    placeholder="x"
+                    id="situacaoInput"
+                    formControlName="situation"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="Campo de pesquisa para um situação (Em andamento ou concluído)"
+                    class="input__form_filter"
+                  >
+                    <option selected value="">Todas Prioridades</option>
+                    <option value="true">Em andamento</option>
+                    <option value="false">Concluído</option>
+                  </select>
+                </div>
+    
+                <div>
+                  <input
+                    type="text"
+                    formControlName="titleOrDescription"
+                    id="titleOrDescription"
+                    placeholder="Descrição/título"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="Campo de pesquisa para título/descrição"
+                    class="input__form_filter"
+                  />
+                </div>
+    
+                <div>
+                  <select
+                    placeholder="Responsável"
+                    formControlName="responsible"
+                    id="responsavel"
+                    [ngClass]="{
+                      'input-contrast': themeService.isHighContrastMode
+                    }"
+                    aria-label="select para atribuir um responsável"
+                    class="input__form_filter"
+                   
+                  >
+                    <option disabled selected value="">Responsável</option>
+                    <option value="Luiz">Luiz</option>
+                    <option value="Raí">Raí</option>
+                    <option value="Alisson">Alisson</option>
+                    <option value="Carlos">Carlos</option>
+                    <option value="Laura">Laura</option>
+                    <option value="Gabriel">Gabriel</option>
+                    <option value="Mariana">Mariana</option>
+                    <option value="Daniel">Daniel</option>
+                    <option value="Luiza">Luiza</option>
+                    <option value="Julia">julia</option>
+                  </select>
+                </div>
+              </div>
+             
+            </form>
+
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+
+      <div class="form__desk">
         <form [formGroup]="taskFilterForm">
           <div class="filter__container">
             <div>
@@ -104,7 +200,7 @@
         </form>
       </div>
 
-      <div class="teste">
+      <div class="container__table">
         <table
           mat-table
           [dataSource]="dataSource"
@@ -119,6 +215,7 @@
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
+              class="titulo__tabela"
             >
               Tarefa
             </th>
@@ -138,17 +235,18 @@
               mat-header-cell
               *matHeaderCellDef
               mat-sort-header
-              class=""
+              
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
+              class="titulo__tabela "
             >
               Prior.
             </th>
             <td
               mat-cell
               *matCellDef="let row"
-              class=""
+       
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
@@ -156,8 +254,8 @@
               <span
                 [ngClass]="{
                   'class-media': row.priority === 'Média',
-                  'class-grave': row.priority === 'Grave',
-                  'class-facil': row.priority === 'Fácil'
+                  'class-alta': row.priority === 'Alta',
+                  'class-baixa': row.priority === 'Baixa'
                 }"
               >
                 {{ row.priority }}
@@ -170,12 +268,13 @@
               mat-header-cell
               *matHeaderCellDef
               mat-sort-header
-              class="rep_invisible"
+            
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
+              class="titulo__tabela rep_invisible"
             >
-              Status.
+              Status
             </th>
             <td
               mat-cell
@@ -200,6 +299,7 @@
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
+              class="titulo__tabela"
             >
               Respons.
             </th>
@@ -219,10 +319,10 @@
               mat-header-cell
               *matHeaderCellDef
               mat-sort-header
-              class="rep_invisible"
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
+              class="titulo__tabela rep_invisible"
             >
               Deadline
             </th>
@@ -246,6 +346,7 @@
               [ngClass]="{
                 'text-contrast border-contrast': themeService.isHighContrastMode
               }"
+              class="titulo__tabela"
             ></th>
             <td
               mat-cell
@@ -253,6 +354,7 @@
               [ngClass]="{
                 'border-contrast': themeService.isHighContrastMode
               }"
+              
             >
               <button
                 mat-icon-button
