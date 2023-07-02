@@ -1,4 +1,4 @@
-.login__container {
+.login{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #6261b428;
+  background: #6261b412;
   padding: 1rem;
   height: 300px;
   width: 300px;
@@ -25,6 +25,10 @@ form {
 
 mat-form-field {
   width: 300px;
+}
+
+.header__group{
+  font-weight: 500;
 }
 
 button[type="submit"] {
@@ -45,7 +49,7 @@ button[type="submit"]:hover {
   background-color: #5554aa7f;
 }
 
-.input__form {
+.login__input {
   border-radius: 10px !important;
   border: 1px solid var(--black-10, #e8eef0);
   background: #f5f5f5;
@@ -56,7 +60,7 @@ button[type="submit"]:hover {
   color: #00000079 !important;
 }
 
-.input__form:focus {
+.login__input:focus {
   border: 1px solid #5554aa !important;
 }
 
@@ -67,6 +71,7 @@ header {
   display: flex;
   align-items: center;
 }
+
 header p {
   margin: 0;
   padding: 0;

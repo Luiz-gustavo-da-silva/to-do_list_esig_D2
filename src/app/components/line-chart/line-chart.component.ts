@@ -79,7 +79,7 @@ export class LineChartComponent implements OnInit {
   }
 
   buscaDadosGrafico(range?: any) {
-    this.api.getDadosGrafico(range).subscribe({
+    this.api.getGraphicData(range).subscribe({
       next: (res) => {
 
         console.log(res);

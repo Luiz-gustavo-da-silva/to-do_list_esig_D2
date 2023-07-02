@@ -17,13 +17,13 @@ export class ApiService {
     return this.http.get<Task[]>('api/Tasks');
   }
 
+  /**
+   * Obtém os contadores das tarefas em diferentes situações.
+   * @returns Um Observable que emite uma resposta contendo os contadores.
+   */
   getContadores(): Observable<any> {
-    const numTasksEmAndamento = this.http.get<Task[]>(
-      'api/Tasks?situation=true'
-    );
-    const numTasksConcluidas = this.http.get<Task[]>(
-      'api/Tasks?situation=false'
-    );
+    const numTasksEmAndamento = this.http.get<Task[]>('api/Tasks?situation=true');
+    const numTasksConcluidas = this.http.get<Task[]>('api/Tasks?situation=false');
 
     return forkJoin([numTasksEmAndamento, numTasksConcluidas]).pipe(
       map(([tasksEmAndamento, tasksConcluidas]) => {
@@ -44,11 +44,12 @@ export class ApiService {
     );
   }
 
-  getDadosGrafico(
-    range?: any
-  ): Observable<{ dia: string; quantidade: number }[]> {
-    // console.log(range.range);
-
+  /**
+   * Obtém os dados para um gráfico com base no intervalo de tempo fornecido.
+   * @param range O intervalo de tempo para o gráfico.
+   * @returns Um Observable que emite uma resposta contendo os dados do gráfico.
+   */
+  getGraphicData(range?: any): Observable<{ dia: string; quantidade: number }[]> {
     const today = new Date(); // Data atual
     const endDate = new Date(
       today.getFullYear(),
@@ -62,9 +63,7 @@ export class ApiService {
 
         tasks.forEach((task) => {
           const dataConclusao = new Date(task.conclusionData);
-          // console.log(dataConclusao);
           if (dataConclusao <= today && dataConclusao >= endDate) {
-            // Verifica se a data de conclusão está dentro do range especificado
             const dia = dataConclusao.toLocaleDateString();
             if (tarefasPorDia[dia]) {
               tarefasPorDia[dia]++;
@@ -112,6 +111,7 @@ export class ApiService {
 
   /**
    * Conclui uma tarefa, definindo sua situação como false (concluído).
+   * e seta a data atual para a data de conclusão
    * @param data Os dados da tarefa a ser concluída.
    * @param id O ID da tarefa a ser concluída.
    * @returns Um Observable que emite uma resposta contendo a tarefa concluída.
@@ -122,11 +122,6 @@ export class ApiService {
     return this.http.put<Task>(`api/Tasks/${id}`, data);
   }
 
-  //Essa consulta está ineficiente, pois estou tratando os dados localmente.
-  //Imagino que com uma grande quantidade de dados, essa abordagem se torne
-  //completamente obsoleta. No entanto, optei por fazê-la dessa forma para
-  //permitir consultas em colunas diferentes usando o in-memory-web-api, que
-  //não suporta consultas combinadas.
   /**
    * Filtra as tarefas com base nas informações fornecidas.
    * @param data Os critérios de filtro.
@@ -149,12 +144,8 @@ export class ApiService {
     }
 
     if (titleOrDescription) {
-      const tituloRequest = this.http.get<Task[]>(
-        `${queryString}title=${titleOrDescription}`
-      );
-      const descricaoRequest = this.http.get<Task[]>(
-        `${queryString}description=${titleOrDescription}`
-      );
+      const tituloRequest = this.http.get<Task[]>(`${queryString}title=${titleOrDescription}`);
+      const descricaoRequest = this.http.get<Task[]>(`${queryString}description=${titleOrDescription}`);
 
       return forkJoin([tituloRequest, descricaoRequest]).pipe(
         map((results) => {
@@ -169,7 +160,6 @@ export class ApiService {
     return this.http.get<Task[]>(queryString);
   }
 
-  // Esse método foi crriado só parra simular uma login de um usuário
   /**
    * Realiza o login do usuário.
    * @param data Os dados de login do usuário.

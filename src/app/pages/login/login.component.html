@@ -1,8 +1,8 @@
 <header>
-  <p>Esig<span style="font-weight: 500">GROUP</span></p>
+  <p>Esig<span class="header__group">GROUP</span></p>
 </header>
 
-<div class="login__container">
+<div class="login">
   
   <form [formGroup]="loginForm" (submit)="submitLogin()">
     <input
@@ -10,7 +10,7 @@
       formControlName="email"
       placeholder="Email"
       aria-label="Campo para email"
-      class="input__form"
+      class="login__input"
     />
 
     <input
@@ -18,12 +18,12 @@
       formControlName="senha"
       placeholder="Senha"
       aria-label="Campo para senha"
-      class="input__form"
+      class="login__input"
     />
 
     <button
       type="submit"
-      class="button__submit"
+      class="login__button"
       [disabled]="!loginForm.valid"
       aria-label="Botão para fazer login"
     >
