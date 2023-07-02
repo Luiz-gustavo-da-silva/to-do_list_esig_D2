@@ -4,11 +4,14 @@
 
 ### Links
 
-link do site hospedado no Netify:
+#### link do site hospedado no Netify:
 
-https://main--lucent-empanada-e79c23.netlify.app/todopage
 
 OBS.: Desculpe pelo link estranho, isso ocorreu porque não comprei um domínio para o site.
+
+#### link do figma
+
+https://www.figma.com/file/x0fSZ0pQyClJdFAuYoxQq2/Test---Esig-Grup?node-id=0%3A1&mode=dev
 
 ### Resumo
 
@@ -17,34 +20,14 @@ Projeto criado para a resolução do desafio de estágio front-end da empresa ES
 
 ### Instruções para uso da aplicação/descrição do que foi feito
 
-Ao acessar a aplicação, os usuários serão recebidos por uma tela de login, onde poderão autenticar-se e entrar na aplicação. Utilize o seguinte email: luiz@gmail.com e senha: 1234 para realizar a autenticação.
+Ao acessar a aplicação, os usuários serão recebidos por uma tela de login, onde poderão autenticar-se e entrar na aplicação. Utilize o seguinte email: luiz@gmail.com e senha: 1234 para realizar a autenticação. 
 
-Após o login bem-sucedido, os usuários serão redirecionados para um painel de controle (dashboard), onde poderão visualizar uma tabela com as tarefas em andamento. Além disso, haverá uma barra lateral com um botão para adicionar uma nova tarefa e um elemento de "accordion" contendo opções de filtro.
+Após o login bem-sucedido, os usuários serão redirecionados para a tela de tarefas, onde poderão visualizar uma tabela com as tarefas. 
 
-Os usuários poderão filtrar as informações da tabela usando o filtro, que permite combinar ou pesquisar separadamente por número, situação, título/descrição e responsável.
+Além disso, os usuários poderão filtrar as informações da tabela usando o filtro, que permite combinar ou pesquisar separadamente por status, prioridade, título/descrição e tempo da deadline (mostra as tarefas que tem a deadline dentro do range). 
 
-Na coluna "Action" da tabela, os usuários terão opções para editar, excluir e concluir uma tarefa. Ao excluir uma tarefa, ela será removida do banco de dados e não poderá mais ser acessada. Ao concluir uma tarefa, ela será removida da lista inicial, mas poderá ser encontrada utilizando o filtro de "situação".
+Ademais, na página dashboard o usuário pode visualizar 3 contagens, to do (quantidade total de tarefas), “doing” (tarefas abertas) e “done” (tarefas concluídas). No “doing” é possível ver quantas tarefas estão atrasadas.
 
-Ao lado da coluna "Action", há uma coluna "Detalhes", que permite ao usuário visualizar todas as informações relacionadas a uma determinada tarefa.
-  
-
-### Itens feitos
-
-- a) Criei uma aplicação SPA utilizando Angular na versão mais recente.
-
-- b) Usei o In Memory BD para simulação do back-end da aplicação.
-
-- d) Criei algumas telas/modais extras, sendo elas o modal detalhes e a tela de login.
-
-- g) Recurso de acessibilidade alto constraste (Para pessoas com baixa visão).
-
-### Acessibilidade
-
-![Texto Alternativo](./src/assets/acessibilidade%20avalia%C3%A7%C3%A3o.png)
-
-Sendo a acessibilidade um recurso extremamente importante, considerei a inclusão de todos os usuários ao desenvolver esta aplicação. A imagem acima é um teste automatizado realizado com a ferramenta Accessibility Insights, que avalia recursos de acessibilidade. Como demonstrado, não foram encontradas falhas que comprometam a inclusão de pessoas com deficiência. Os testes manuais também não apresentaram erros.
-
-Além disso, considerando também as necessidades das pessoas com baixa visão, implementei o recurso de alto contraste, que proporciona uma leitura mais acessível das informações (para ativá-lo, basta clicar no segundo botão à esquerda da página).
 
 ### Passo a passo para rodar o programa localmente
 

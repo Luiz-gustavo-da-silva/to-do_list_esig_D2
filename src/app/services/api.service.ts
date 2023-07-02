@@ -21,9 +21,13 @@ export class ApiService {
    * Obtém os contadores das tarefas em diferentes situações.
    * @returns Um Observable que emite uma resposta contendo os contadores.
    */
-  getContadores(): Observable<any> {
-    const numTasksEmAndamento = this.http.get<Task[]>('api/Tasks?situation=true');
-    const numTasksConcluidas = this.http.get<Task[]>('api/Tasks?situation=false');
+  getAccountants(): Observable<any> {
+    const numTasksEmAndamento = this.http.get<Task[]>(
+      'api/Tasks?situation=true'
+    );
+    const numTasksConcluidas = this.http.get<Task[]>(
+      'api/Tasks?situation=false'
+    );
 
     return forkJoin([numTasksEmAndamento, numTasksConcluidas]).pipe(
       map(([tasksEmAndamento, tasksConcluidas]) => {
@@ -49,7 +53,9 @@ export class ApiService {
    * @param range O intervalo de tempo para o gráfico.
    * @returns Um Observable que emite uma resposta contendo os dados do gráfico.
    */
-  getGraphicData(range?: any): Observable<{ dia: string; quantidade: number }[]> {
+  getGraphicData(
+    range?: any
+  ): Observable<{ dia: string; quantidade: number }[]> {
     const today = new Date(); // Data atual
     const endDate = new Date(
       today.getFullYear(),
@@ -128,24 +134,33 @@ export class ApiService {
    * @returns Um Observable que emite uma resposta contendo as tarefas filtradas.
    */
   filterTask(data: FilterCriteria): Observable<Task[]> {
-    const { number, situation, titleOrDescription, responsible } = data;
+    const {priority , situation, titleOrDescription, range } = data;
+    console.log(range);
+
+    const today = new Date(); // Data atual
+    const endDate = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - data.range
+    );
+
     let queryString = `api/Tasks?`;
 
-    if (number) {
-      queryString += `id=${number}&`;
+    if (priority) {
+      queryString += `priority=${priority}&`;
     }
 
     if (situation) {
       queryString += `situation=${situation}&`;
     }
 
-    if (responsible) {
-      queryString += `responsible=${responsible}&`;
-    }
-
     if (titleOrDescription) {
-      const tituloRequest = this.http.get<Task[]>(`${queryString}title=${titleOrDescription}`);
-      const descricaoRequest = this.http.get<Task[]>(`${queryString}description=${titleOrDescription}`);
+      const tituloRequest = this.http.get<Task[]>(
+        `${queryString}title=${titleOrDescription}`
+      );
+      const descricaoRequest = this.http.get<Task[]>(
+        `${queryString}description=${titleOrDescription}`
+      );
 
       return forkJoin([tituloRequest, descricaoRequest]).pipe(
         map((results) => {
@@ -157,7 +172,18 @@ export class ApiService {
 
     queryString = queryString.slice(0, -1);
 
-    return this.http.get<Task[]>(queryString);
+    return this.http.get<Task[]>(queryString).pipe(
+      map((tasks: Task[]) => {
+        if (range != 0) {
+          return tasks.filter((task) => {
+            const conclusionDate = new Date(task.deadline);
+            return conclusionDate >= endDate && conclusionDate <= today;
+          });
+        }
+
+        return tasks;
+      })
+    );
   }
 
   /**
