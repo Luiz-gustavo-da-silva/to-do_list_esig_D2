@@ -15,7 +15,7 @@ https://www.figma.com/file/x0fSZ0pQyClJdFAuYoxQq2/Test---Esig-Grup?node-id=0%3A1
 
 ### Resumo
 
-Projeto criado para a resolução do desafio de estágio front-end da empresa ESIG. O objetivo desse projeto é desenvolver um gerenciador de tarefas simples. A aplicação permitirá aos usuários criar,  atualizar, remover e listar uma tarefa.
+Projeto criado para a resolução do desafio de estágio front-end da empresa ESIG. O objetivo desse projeto é desenvolver um gerenciador de tarefas simples. A aplicação permitirá aos usuários criar,  atualizar, remover e listar uma tarefa. Além disso, foi necessário fazer uma adaptação no tamplate. 
 
 
 ### Instruções para uso da aplicação/descrição do que foi feito

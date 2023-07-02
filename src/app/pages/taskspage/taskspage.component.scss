@@ -1,77 +1,8 @@
-.container_grid {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr;
-  grid-template-rows: 0.1fr 1fr;
-  grid-template-areas:
-    "sideBar header header header"
-    "sideBar content content content";
-  height: 100%;
-}
-
-#sideBar {
-  grid-area: sideBar;
-  background: #6261b4;
-  width: 250px;
-  transition: 0.2s linear;
-  height: 100%;
-}
-
-#header {
-  grid-area: header;
-}
-
-.menuDesaparecer {
-  width: 70px !important;
-}
-
-#content {
-  grid-area: content;
-  background: #f5f5f5;
-  padding: 0rem 2rem;
-  height: 100%;
-}
-
 .container_inicial {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 4rem;
-}
-
-.buttom__add {
-  background-color: #5554aa;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.buttom__add img {
-  width: 20px;
-  height: auto;
-}
-
-.texto_principal {
-  font-size: 1.3em;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
-
-.input__form_filter {
-  border-radius: 10px;
-  border: 1px solid  #e8eef0;
-  background:  #fff;
-}
-
-.input__form_filter:focus {
-  border: 1px solid #5554aa !important;
 }
 
 .container__filter_tabela {
@@ -85,7 +16,6 @@ input,
 select {
   padding: 1rem;
   font-size: 1rem;
-  // width: 100%;
   border-radius: 5px;
 }
 
@@ -173,47 +103,6 @@ form div div,
 }
 
 @media (max-width: 1000px) {
-  .container_grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 0.1fr 1fr;
-    grid-template-areas:
-      "sideBar"
-      "header"
-      "content";
-    min-height: 100vh;
-  }
-
-  #sideBar {
-    width: 100% !important;
-  }
-
-  .menuDesaparecer {
-    width: 100%;
-    height: 200px !important;
-  }
-
-  #sideBar {
-    height: 60px;
-  }
-
-  .container_grid-contagem {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-      "todo"
-      "doing"
-      "done";
-    gap: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 2.6rem;
-  }
-
-  #content {
-    padding: 0rem 1rem;
-  }
-
   .filter__container {
     display: flex;
     justify-content: center;
