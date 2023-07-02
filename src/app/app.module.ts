@@ -39,6 +39,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 import { HeaderComponent } from './components/header/header.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 registerLocaleData(en);
 
@@ -52,7 +53,8 @@ registerLocaleData(en);
     TodopageComponent,
     TaskspageComponent,
     LineChartComponent,
-    HeaderComponent
+    HeaderComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

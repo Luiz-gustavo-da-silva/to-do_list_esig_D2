@@ -195,4 +195,13 @@ export class ApiService {
     const { login, senha } = data;
     return this.http.get<any>(`api/Users?login=${login}&senha=${senha}`);
   }
+
+  
+  /**
+   * Recupera os dados do usuário.
+   * @returns Um Observable que emite uma resposta contendo os dados do usuário logado.
+   */
+  getDataPerfil(): Observable<any>{
+    return this.http.get<any>(`api/Users`);
+  }
 }

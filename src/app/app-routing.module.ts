@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { TodopageComponent } from './pages/todopage/todopage.component';
 import { TaskspageComponent } from './pages/taskspage/taskspage.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,10 @@ const routes: Routes = [
   ,
   {
     path: 'taskspage', component: TaskspageComponent,
-  }
+  },
+  {
+    path:"perfil", component: PerfilComponent,
+  },
 ];
 
 @NgModule({

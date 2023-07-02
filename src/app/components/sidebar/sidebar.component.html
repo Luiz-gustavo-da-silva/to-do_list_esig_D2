@@ -34,5 +34,12 @@
           <span [ngClass]="themeService.menu ? 'menuAtivo' : ''">Tarefas</span>
         </a>
       </li>
+      <li class="li_global" [routerLinkActive]="'li__ativo'" [ngClass]="themeService.menu ? 'textCenter' : ''"
+      >
+        <a routerLink="/perfil">
+          <mat-icon>assignment_ind</mat-icon>
+          <span [ngClass]="themeService.menu ? 'menuAtivo' : ''">Perfil</span>
+        </a>
+      </li>
     </ul>
   </div>

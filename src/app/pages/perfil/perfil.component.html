@@ -1,0 +1,25 @@
+<div class="container_grid">
+  <div id="sideBar" [ngClass]="themeService.menu ? 'menuDesaparecer' : ''">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div id="header">
+    <app-header></app-header>
+  </div>
+
+  <div id="content">
+    
+    <div class="container__perfil">
+        <div>
+            <h1>Perfil</h1>    
+        </div>
+        <div>
+            <h3>Email:</h3><p>{{email}}</p>
+            <h3>Nome:</h3><p>{{nome}}</p>
+            <h3>Idade:</h3><p>{{idade}}</p>
+        </div>
+    </div>
+    
+
+  </div>
+</div>
