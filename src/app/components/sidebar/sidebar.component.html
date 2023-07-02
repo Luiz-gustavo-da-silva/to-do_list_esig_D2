@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="container__ul">
+  <div class="container__ul" [ngClass]="!themeService.menu ? 'teste' : ''">
     <ul>
       <li class="li_global" [routerLinkActive]="'li__ativo'" [ngClass]="themeService.menu ? 'textCenter' : ''">
         <a routerLink="/todopage">
