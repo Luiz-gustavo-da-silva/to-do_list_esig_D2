@@ -11,7 +11,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Luiz',
         priority: 'Média',
         situation: false,
-        conclusionData:'2023-06-15'
+        conclusionData:'2023-06-15',
+        file: '',
       },
       {
         id: 2,
@@ -21,7 +22,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Luiza',
         priority: 'Grave',
         situation: false,
-        conclusionData:'2023-06-15'
+        conclusionData:'2023-06-15',
+        file: '',
       },
       {
         id: 3,
@@ -31,7 +33,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Julia',
         priority: 'Fácil',
         situation: true,
-        conclusionData:''
+        conclusionData:'',
+        file: '',
       },
       {
         id: 4,
@@ -41,7 +44,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Raí',
         priority: 'Média',
         situation: true,
-        conclusionData:''
+        conclusionData:'',
+        file: '',
       },
       {
         id: 5,
@@ -51,7 +55,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Alisson',
         priority: 'Grave',
         situation: true,
-        conclusionData:''
+        conclusionData:'',
+        file: '',
       },
       {
         id: 6,
@@ -61,7 +66,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Laura',
         priority: 'Fácil',
         situation: true,
-        conclusionData:''
+        conclusionData:'',
+        file: '',
       },
       {
         id: 7,
@@ -71,7 +77,8 @@ export class TaskDataService implements InMemoryDbService {
         responsible: 'Gabriel',
         priority: 'Média',
         situation: true,
-        conclusionData:''
+        conclusionData:'',
+        file: '',
       }
     ];
 
