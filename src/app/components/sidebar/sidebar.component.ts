@@ -4,24 +4,15 @@ import { ThemeService } from 'src/app/services/theme-service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-
-  constructor( public themeService: ThemeService) {}
+  constructor(public themeService: ThemeService) {}
 
   /**
-   * Liga ou desliga o modo alto contraste.
-   */
-  toggleHighContrastMode() {
-    this.themeService.toggleHighContrastMode();
-  }
-
-   /**
    * Executa a ação de abrir ou fechar no menu.
    */
-  actionMenu(){
+  actionMenu() {
     this.themeService.toggleMenu();
   }
-  
 }

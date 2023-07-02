@@ -1,45 +1,37 @@
 <div class="container__div-modal">
-  <h1
-    [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
-  >
-    Tarefa: {{ showData.title }}
-  </h1>
-  <div
-    
-    [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
-  >
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+  <h1>Tarefa: {{ showData.title }}</h1>
+  <div>
+    <div>
       <h2>Número:</h2>
       <p>{{ showData.id }}</p>
     </div>
 
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+    <div>
       <h2>Responsável:</h2>
       <p>{{ showData.responsible }}</p>
     </div>
 
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+    <div>
       <h2>Prioridade:</h2>
       <p>{{ showData.priority }}</p>
     </div>
 
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+    <div>
       <h2>Deadline:</h2>
       <p>{{ showData.deadline | date }}</p>
     </div>
 
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+    <div>
       <h2>Descrição:</h2>
       <p>{{ showData.description }}</p>
     </div>
 
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+    <div>
       <h2>Data da conclusão:</h2>
       <p>{{ showData.conclusionData | date }}</p>
     </div>
 
-
-    <div [ngClass]="{ 'text-contrast': themeService.isHighContrastMode }">
+    <div>
       <h2>Situação:</h2>
       <p>
         <span *ngIf="showData.situation; else concluido">Em andamento</span>
@@ -47,15 +39,11 @@
       </p>
     </div>
 
-    <div
-      class="container__button-sair"
-      [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }"
-    >
+    <div class="container__button-sair">
       <button
         (click)="closeModal()"
         class="dialog-actions__button_sair"
         aria-label="Botão para sair do modal"
-        [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
       >
         Sair
       </button>

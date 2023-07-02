@@ -12,10 +12,11 @@ export interface Task {
   }
   
 export interface FilterCriteria {
-    number?: number;
+    priority?: string;
     situation?: boolean;
     titleOrDescription?: string;
     responsible?: string;
+    range: number;
   }
   
   

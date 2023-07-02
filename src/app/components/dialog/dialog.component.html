@@ -1,6 +1,6 @@
 <div class="container__div-modal">
   <div class="container__titulo">
-    <h1 [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }">
+    <h1>
       Criar Tarefa
     </h1>
   </div>
@@ -9,7 +9,7 @@
     <button
       mat-dialog-close
       aria-label="Botão para sair do modal"
-      [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
+     
       class="button__fecharmodal"
     >
       <img src="../../../assets/circle-xmark.svg" alt="Botão sair do modal" />
@@ -24,7 +24,7 @@
           formControlName="title"
           id="titulo"
           placeholder="Título da Tarefa"
-          [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
+         
           aria-label="Campo para o título"
           class="login__input"
         />
@@ -36,7 +36,7 @@
           id="descricao"
           placeholder="Detalhes da Tarefa"
           rows="6"
-          [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
+          
           aria-label="Campo para descrição da tarefa"
           class="login__input"
         ></textarea>
@@ -49,7 +49,7 @@
             formControlName="deadline"
             id="deadline"
             placeholder="Deadline"
-            [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
+            
             aria-label="Campo para data limite"
             class="login__input"
           />
@@ -60,7 +60,7 @@
             placeholder="Prioridade"
             id="prioridade"
             formControlName="priority"
-            [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
+            
             aria-label="select para setar a gravidade da tarefa"
             class="login__input"
           >
@@ -77,7 +77,7 @@
           placeholder="Responsável"
           id="responsavel"
           formControlName="responsible"
-          [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
+       
           aria-label="select para atribuir um responsável"
           class="login__input"
         >
@@ -122,7 +122,7 @@
         mat-dialog-close
         class="dialog-actions__button_sair"
         aria-label="Botão para sair do modal"
-        [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
+     
       >
         Cancelar
       </button>
@@ -131,7 +131,7 @@
         (click)="addTask()"
         class="buttom__add"
         aria-label="Botão para adicionar uma tarrefa ou editar"
-        [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
+        
       >
         <img
           src="../../../assets/square-plus.svg"

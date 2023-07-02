@@ -26,14 +26,14 @@ export class TodopageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getContadores();
+    this.getAccountants();
   }
 
   /**
    * Obtém os contadores de tarefas do serviço API.
    */
-  getContadores() {
-    this.api.getContadores().subscribe({
+  getAccountants() {
+    this.api.getAccountants().subscribe({
       next: (res) => {
         this.numTasksEmAndamento = res.numTasksEmAndamento;
         this.numTasksConcluidas = res.numTasksConcluidas;
@@ -58,7 +58,7 @@ export class TodopageComponent implements OnInit {
       })
       .afterClosed()
       .subscribe(() => {
-        this.getContadores();
+        this.getAccountants();
       });
   }
 }

@@ -102,15 +102,11 @@ export class DialogComponent implements OnInit {
    * @param fileList A lista de arquivos.
    */
   handleChange({ file, fileList }: NzUploadChangeParam): void {
-    const status = file.status;
-    if (status !== 'uploading') {
-      this.file = file.originFileObj;
-    }
-    if (status === 'done') {
-      this.msg.success(`${file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      this.msg.error(`${file.name} file upload failed.`);
-    }
+    // const status = file.status;
+    // if (status !== 'uploading') {
+      //this.file = file.originFileObj;
+    // }
+      // this.msg.success(`${file.name} file uploaded successfully.`);
   }
   
 }

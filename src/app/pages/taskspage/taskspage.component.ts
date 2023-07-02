@@ -46,10 +46,12 @@ export class TaskspageComponent implements OnInit {
    */
   ngOnInit(): void {
     this.taskFilterForm = this.formBuilder.group({
-      number: '',
+      // number: '',
+      priority: '',
       situation: '',
       titleOrDescription: '',
-      responsible: '',
+      // responsible: '',
+      range:[0],
     });
 
     this.setupFormChangeListeners();
