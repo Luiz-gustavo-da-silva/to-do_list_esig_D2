@@ -62,7 +62,9 @@ Isso iniciará o servidor de desenvolvimento e irá compilar e servir o projeto 
 `http://localhost:4200`
 
 ### Tecnologias utilizadas
+### Tecnologias utilizadas
 
 - Material angular
 - NG-ZORRO (Ant design)
 - Chart JS
+

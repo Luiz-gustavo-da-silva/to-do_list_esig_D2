@@ -85,6 +85,8 @@ export class TaskDataService implements InMemoryDbService {
     const Users = [{
       email:'luiz@gmail.com',
       senha:'1234',
+      nome:'Luiz',
+      idade:21,
     }]
     return { Tasks, Users };
   }
