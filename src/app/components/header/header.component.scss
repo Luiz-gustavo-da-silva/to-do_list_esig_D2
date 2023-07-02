@@ -1,4 +1,4 @@
-.container_header {
+.container__header {
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.container_header div {
+.container__header div {
   display: flex;
   align-items: center;
 }
@@ -17,7 +17,7 @@
 }
 
 @media (max-width: 1000px) {
-  .container_header {
+  .container__header {
     padding: 1rem 1rem;
   }
 }

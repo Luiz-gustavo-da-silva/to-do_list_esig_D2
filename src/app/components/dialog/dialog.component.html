@@ -1,5 +1,5 @@
 <div class="container__div-modal">
-  <div class="container_titulo">
+  <div class="container__titulo">
     <h1 [ngClass]="{ 'high-contrast': themeService.isHighContrastMode }">
       Criar tarefa
     </h1>
@@ -10,9 +10,9 @@
       mat-dialog-close
       aria-label="Botão para sair do modal"
       [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
-      class="btn_close"
+      class="button__fecharmodal"
     >
-      <img src="../../../assets/circle-xmark.svg" alt="" />
+      <img src="../../../assets/circle-xmark.svg" alt="Botão sair do modal" />
     </button>
   </div>
 
@@ -23,10 +23,10 @@
           type="text"
           formControlName="title"
           id="titulo"
-          placeholder="Título da tarefa"
+          placeholder="Título da Tarefa"
           [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
           aria-label="Campo para o título"
-          class="input__form_filter"
+          class="login__input"
         />
       </div>
 
@@ -38,20 +38,20 @@
           rows="6"
           [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
           aria-label="Campo para descrição da tarefa"
-          class="input__form_filter"
+          class="login__input"
         ></textarea>
       </div>
 
-      <div class="container_duplo">
+      <div class="container__duplo">
         <div>
           <input
             type="date"
             formControlName="deadline"
             id="deadline"
-            placeholder=""
+            placeholder="Deadline"
             [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
             aria-label="Campo para data limite"
-            class="input__form_filter"
+            class="login__input"
           />
         </div>
 
@@ -62,9 +62,9 @@
             formControlName="priority"
             [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
             aria-label="select para setar a gravidade da tarefa"
-            class="input__form_filter"
+            class="login__input"
           >
-            <option disabled selected value="">Ex.: Grave</option>
+            <option disabled selected value="">Prioridade</option>
             <option value="Grave">Grave</option>
             <option value="Média">Médio</option>
             <option value="Fácil">Fácil</option>
@@ -79,9 +79,9 @@
           formControlName="responsible"
           [ngClass]="{ 'input-contrast': themeService.isHighContrastMode }"
           aria-label="select para atribuir um responsável"
-          class="input__form_filter"
+          class="login__input"
         >
-          <option disabled selected value="">Ex.: Luiz</option>
+          <option disabled selected value="">Responsáveis</option>
           <option value="Luiz">Luiz</option>
           <option value="Raí">Raí</option>
           <option value="Alisson">Alisson</option>
@@ -96,7 +96,24 @@
       </div>
 
       <div>
-        <input type="file"  formControlName="file">
+        <nz-upload
+          nzType="drag"
+          [nzMultiple]="true"
+          nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          (nzChange)="handleChange($event)"
+          class="custom-upload"
+          
+        >
+          <p class="ant-upload-drag-icon">
+           <img src="../../../assets/upload.svg" alt="imagem de upload">
+          </p>
+          <p class="ant-upload-text">
+            Anexar arquivo
+          </p>
+          <p class="ant-upload-hint">
+            A better way to tell which species are vulnerable
+          </p>
+        </nz-upload>
       </div>
     </form>
 
@@ -108,7 +125,7 @@
         [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
       >
         Cancelar
-    </button>
+      </button>
       <button
         color="primary"
         (click)="addTask()"
@@ -116,9 +133,12 @@
         aria-label="Botão para adicionar uma tarrefa ou editar"
         [ngClass]="{ 'button-contrast': themeService.isHighContrastMode }"
       >
-      <img src="../../../assets/square-plus.svg" alt="icone nova tarefa ou editar"> {{ actionBtn }}
+        <img
+          src="../../../assets/square-plus.svg"
+          alt="icone nova tarefa ou editar"
+        />
+        {{ actionBtn }}
       </button>
     </div>
   </div>
 </div>
-

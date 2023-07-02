@@ -35,13 +35,6 @@ mat-form-field {
   cursor: pointer;
 }
 
-// .dialog-actions__button_add {
-//   background-color: #3577be;
-//   border-radius: 5px;
-//   color: #fff;
-//   width: 35%;
-// }
-
 .high-contrast {
   background-color: #000 !important;
   color: #fff !important;
@@ -110,20 +103,20 @@ form div div {
 }
 
 .container__div-modal {
-  height: 680px;
+  min-height: 680px;
   width: 650px;
   border-radius: 15px !important;
   padding: 1rem 4rem;
   border: solid 1px #fff;
 }
 
-.container_titulo {
+.container__titulo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.container_titulo h1 {
+.container__titulo h1 {
   color: #263238;
   font-size: 24px;
   font-family: Plus Jakarta Sans;
@@ -144,20 +137,20 @@ form div div {
   flex-shrink: 0;
 }
 
-.btn_close {
+.button__fecharmodal {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.input__form_filter{
+.login__input{
   border-radius: 10px;
   border: 1px solid var(--black-10, #E8EEF0);
   background: var(--white-100, #FFF);
 
 }
 
-.input__form_filter:focus{
+.login__input:focus{
   border: 1px solid #5554aa !important;
 }
 
@@ -165,15 +158,14 @@ input:focus{
   border: 1px solid  #5554aa !important;
 }
 
-.container_duplo{
+.container__duplo{
   display: flex;
   gap: 1rem;
 }
 
-.container_duplo input, .container_duplo select {
+.container__duplo input, .container__duplo select {
   width: 100%;
 }
-
 
 .nz-upload__background{
   background-color: #263238;
@@ -205,6 +197,14 @@ input:focus{
   height: auto;
 }
 
+.custom-upload {
+  border: none !important;
+  background: red !important;
+}
+
+.ant-upload-text{
+  font-weight: bold;
+}
 
 @media (max-width: 1000px) {
   .form__container {

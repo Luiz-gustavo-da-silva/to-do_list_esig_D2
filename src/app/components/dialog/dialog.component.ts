@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ThemeService } from 'src/app/services/theme-service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 
 /**
  * Componente modal para adicionar ou atualizar uma tarefa.
@@ -16,6 +17,7 @@ import { ThemeService } from 'src/app/services/theme-service';
 export class DialogComponent implements OnInit {
   taskForm!: FormGroup;
   actionBtn: string = 'Criar tarefa';
+  file: File | undefined = undefined; // Variável para armazenar o arquivo
 
   /**
    * Construtor do componente DialogComponent.
@@ -25,6 +27,7 @@ export class DialogComponent implements OnInit {
    * @param dialogRef A referência ao componente de diálogo atual, injetada por MatDialogRef.
    */
   constructor(
+    private msg: NzMessageService,
     private formBuilder: FormBuilder,
     private api: ApiService,
     @Inject(MAT_DIALOG_DATA) public editData: any,
@@ -56,7 +59,6 @@ export class DialogComponent implements OnInit {
       this.taskForm.controls['description'].setValue(this.editData.description);
       this.taskForm.controls['priority'].setValue(this.editData.priority);
       this.taskForm.controls['deadline'].setValue(this.editData.deadline);
-      this.taskForm.controls['file'].setValue('');
     }
   }
 
@@ -102,5 +104,17 @@ export class DialogComponent implements OnInit {
     });
   }
 
+  handleChange({ file, fileList }: NzUploadChangeParam): void {
+    const status = file.status;
+    if (status !== 'uploading') {
+      console.log(file, fileList);
+      this.file = file.originFileObj; // Armazena o arquivo selecionado na variável
+    }
+    if (status === 'done') {
+      this.msg.success(`${file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
+      this.msg.error(`${file.name} file upload failed.`);
+    }
+  }
   
 }
