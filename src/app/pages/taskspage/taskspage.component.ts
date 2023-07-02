@@ -15,11 +15,12 @@ import { ThemeService } from '../../services/theme-service';
   styleUrls: ['./taskspage.component.scss']
 })
 export class TaskspageComponent implements OnInit {
-  panelOpenState = false;
+  panelOpenState:boolean = false;
+  isCollapsed:boolean = false;
   title = 'Tarefas';
 
   taskFilterForm!: FormGroup;
-  
+
   displayedColumns: string[] = [
     'title',
     'priority',
@@ -28,11 +29,10 @@ export class TaskspageComponent implements OnInit {
     'deadline',
     'action',
   ];
+
   dataSource!: MatTableDataSource<any>;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  isCollapsed:boolean = false;
-
 
   constructor(
     private dialog: MatDialog,
@@ -41,8 +41,6 @@ export class TaskspageComponent implements OnInit {
     public themeService: ThemeService
   ) {}
   
-
-
   /**
    * Inicializa o componente.
    */
@@ -56,7 +54,6 @@ export class TaskspageComponent implements OnInit {
 
     this.setupFormChangeListeners();
     this.getAllTask();
-   
   }
 
   /**
@@ -85,16 +82,8 @@ export class TaskspageComponent implements OnInit {
   }
 
   /**
-   * Limpa os filtros de pesquisa de tarefas e exibe todas as tarefas em andamento.
+   * Configura os ouvintes de mudança no formulário de filtro.
    */
-  // cleanFilter() {
-  //   this.taskFilterForm.reset();
-  //   this.taskFilterForm.get('situation')?.setValue('selected');
-  //   this.taskFilterForm.get('responsible')?.setValue('selected');
-  //   this.getAllTask();
-  // }
-
-
   setupFormChangeListeners() {
     this.taskFilterForm.valueChanges.subscribe(() => {
       this.researchFiltertask();
@@ -153,7 +142,6 @@ export class TaskspageComponent implements OnInit {
    * @param row A linha da tabela contendo os dados da tarefa a ser editada.
    */
   editTask(row: Task) {
-    // console.log(row);
     this.dialog
       .open(DialogComponent, {
         data: row,
@@ -181,6 +169,4 @@ export class TaskspageComponent implements OnInit {
       },
     });
   }
-
- 
 }

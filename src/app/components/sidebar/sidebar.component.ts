@@ -8,17 +8,18 @@ import { ThemeService } from 'src/app/services/theme-service';
 })
 export class SidebarComponent {
 
-  /**
-   * Construtor do componente.
-   * @param dialog O serviço MatDialog para abrir o diálogo.
-   */
   constructor( public themeService: ThemeService) {}
 
-
+  /**
+   * Liga ou desliga o modo alto contraste.
+   */
   toggleHighContrastMode() {
     this.themeService.toggleHighContrastMode();
   }
 
+   /**
+   * Executa a ação de abrir ou fechar no menu.
+   */
   actionMenu(){
     this.themeService.toggleMenu();
   }

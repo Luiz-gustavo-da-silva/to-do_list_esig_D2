@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
@@ -26,16 +26,18 @@ export class LineChartComponent implements OnInit {
     this.setupFormChangeListeners();
   }
   
-
+  /**
+   * Cria o gráfico usando a biblioteca Chart.js.
+   */
   createChart() {
     this.chart = new Chart("MyChart", {
       type: 'line',
       data: {
-        labels: [], // Vamos atualizar esses valores
+        labels: [], 
         datasets: [
           {
             label: "Tarefas Concluídas",
-            data: [], // Vamos atualizar esses valores
+            data: [], 
             backgroundColor: '#4AD894',
             borderColor: '#4AD894',
             fill: false
@@ -61,8 +63,8 @@ export class LineChartComponent implements OnInit {
               display: true
             },
             ticks: {
-              stepSize: 1, // Define o tamanho do intervalo entre os valores do eixo y
-              precision: 0 // Define a precisão dos valores exibidos (0 para valores inteiros)
+              stepSize: 1,
+              precision: 0 
             }
           }
         }
@@ -70,27 +72,29 @@ export class LineChartComponent implements OnInit {
     });
   }
 
-
- 
+  /**
+   * Configura os observadores de alteração do formulário.
+   */
   setupFormChangeListeners() {
     this.formChart.valueChanges.subscribe(() => {
       this.buscaDadosGrafico(this.formChart.value);
     });
   }
 
+ /**
+   * Busca os dados do gráfico da API.
+   * @param range O intervalo de tempo dos dados a ser buscado.
+   */
   buscaDadosGrafico(range?: any) {
     this.api.getGraphicData(range).subscribe({
       next: (res) => {
 
-        console.log(res);
         const labels = res.map(data => data.dia);
         const dataPoints = res.map(data => data.quantidade);
 
-        // Atualiza os valores dos labels e dataPoints
         this.chart.data.labels = labels;
         this.chart.data.datasets[0].data = dataPoints;
 
-        // Atualiza o gráfico
         this.chart.update();
       },
       error: () => {

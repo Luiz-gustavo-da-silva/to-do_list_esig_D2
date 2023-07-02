@@ -6,9 +6,7 @@ import { ThemeService } from 'src/app/services/theme-service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 
-/**
- * Componente modal para adicionar ou atualizar uma tarefa.
- */
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -17,15 +15,9 @@ import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 export class DialogComponent implements OnInit {
   taskForm!: FormGroup;
   actionBtn: string = 'Criar tarefa';
-  file: File | undefined = undefined; // Variável para armazenar o arquivo
+  file: File | undefined = undefined;
 
-  /**
-   * Construtor do componente DialogComponent.
-   * @param formBuilder O construtor do formulário reativo FormBuilder.
-   * @param api O serviço ApiService para comunicação com a API.
-   * @param editData Os dados de edição da tarefa, injetados por MAT_DIALOG_DATA.
-   * @param dialogRef A referência ao componente de diálogo atual, injetada por MatDialogRef.
-   */
+
   constructor(
     private msg: NzMessageService,
     private formBuilder: FormBuilder,
@@ -65,7 +57,7 @@ export class DialogComponent implements OnInit {
   /**
    * Função chamada ao adicionar uma tarefa.
    * Chama o serviço API para adicionar a tarefa.
-   * Fecha o diálogo após a adição da tarefa.
+   * Fecha o modal após a adição da tarefa.
    */
   addTask() {
     if (!this.editData) {
@@ -89,7 +81,7 @@ export class DialogComponent implements OnInit {
   /**
    * Função chamada ao atualizar uma tarefa.
    * Chama o serviço API para atualizar a tarefa.
-   * Fecha o diálogo após a atualização da tarefa.
+   * Fecha o modal após a atualização da tarefa.
    */
   updateTask() {
     this.api.putTask(this.taskForm.value, this.editData.id).subscribe({
@@ -104,11 +96,15 @@ export class DialogComponent implements OnInit {
     });
   }
 
+   /**
+   * Manipulação do arquivo (não funciona).
+   * @param file O arquivo sendo alterado.
+   * @param fileList A lista de arquivos.
+   */
   handleChange({ file, fileList }: NzUploadChangeParam): void {
     const status = file.status;
     if (status !== 'uploading') {
-      console.log(file, fileList);
-      this.file = file.originFileObj; // Armazena o arquivo selecionado na variável
+      this.file = file.originFileObj;
     }
     if (status === 'done') {
       this.msg.success(`${file.name} file uploaded successfully.`);
