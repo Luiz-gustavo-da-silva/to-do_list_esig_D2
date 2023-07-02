@@ -4,10 +4,9 @@
 
 ### Links
 
-#### link do site hospedado no Netify:
+#### link do site:
 
-
-OBS.: Desculpe pelo link estranho, isso ocorreu porque não comprei um domínio para o site.
+Não consegui hospedar o site, pois o tamanho dos arquivos ficou maior do que o limite das versões gratuitas.
 
 #### link do figma
 
